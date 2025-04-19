@@ -3,8 +3,8 @@ package model;
  * 
  */
 public enum TypePoubelle {
-    bleue,
-    jaune,
-    vert,
-    classique
+    VERTE,      // pour VERRE
+    JAUNE,      // pour PLASTIQUE, CARTON, METAL
+    BLEUE,      // pour PAPIER
+    CLASSIQUE   // pour le reste (non recyclables)
 }

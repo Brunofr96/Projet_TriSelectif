@@ -1,136 +1,155 @@
 package model;
 import java.util.*;
 
-/**
- * 
- */
 public class Menage {
 
+    private int id;
+    private String nom;
+    private String adresse;
+    private String adresseMail;
+    private String motDePasse;
+    private int codeAcces;
+    private int pointsFidelite;
+    private List<OperationDepot> historiqueDepots;
+    
+    
     /**
      * Default constructor
      */
     public Menage() {
     }
 
-    /**
-     * 
-     */
-    private int id;
+    // Constructeur avec attributs
+    public Menage(int id, String nom, String adresse, String adresseMail, String motDePasse, int codeAcces,
+			int pointsFidelite, List<OperationDepot> historiqueDepots) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.adresse = adresse;
+		this.adresseMail = adresseMail;
+		this.motDePasse = motDePasse;
+		this.codeAcces = codeAcces;
+		this.pointsFidelite = 0;
+		this.historiqueDepots = new ArrayList<>();
+	}
 
-    /**
-     * 
-     */
-    private String nom;
+ // Getter & Setter
+	public String getNom() {
+		return nom;
+	}
 
-    /**
-     * 
-     */
-    private String adresse;
 
-    /**
-     * 
-     */
-    private int pointsFidelite;
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
-    /**
-     * 
-     */
-    private List historiqueDepots;
 
-    /**
-     * 
-     */
-    public String adresseMail;
+	public String getAdresse() {
+		return adresse;
+	}
 
-    /**
-     * 
-     */
-    public int motdepasse;
 
-    /**
-     * 
-     */
-    public int CodeAcess;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
 
-    /**
-     * 
-     */
-    public String adresseMail;
 
-    /**
-     * 
-     */
-    public String motDePasse;
+	public String getAdresseMail() {
+		return adresseMail;
+	}
 
-    /**
-     * 
-     */
-    public void deposerDechets() {
-        // TODO implement here
+
+	public void setAdresseMail(String adresseMail) {
+		this.adresseMail = adresseMail;
+	}
+
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
+
+	public int getCodeAcces() {
+		return codeAcces;
+	}
+
+
+	public void setCodeAcces(int codeAcces) {
+		this.codeAcces = codeAcces;
+	}
+
+
+	public int getPointsFidelite() {
+		return pointsFidelite;
+	}
+
+
+	public void setPointsFidelite(int pointsFidelite) {
+		this.pointsFidelite = pointsFidelite;
+	}
+	
+    public void ajouterPoints(int points) {
+        this.pointsFidelite += points;
     }
 
-    /**
-     * 
-     */
-    public void consulterPoints() {
-        // TODO implement here
-    }
 
-    /**
-     * 
-     */
-    public void convertirPointsEnReduction() {
-        // TODO implement here
-    }
+	public List<OperationDepot> getHistoriqueDepots() {
+		return historiqueDepots;
+	}
 
-    /**
-     * @return
-     */
-    public List<OperationDepot> afficheHistorique() {
-        // TODO implement here
-        return null;
-    }
 
-    /**
-     * @param dechets 
-     * @param poubelle 
-     * @return
-     */
-    public void deposerDechets(List<Dechet> dechets, BacIntelligente poubelle) {
-        // TODO implement here
-        return null;
-    }
+	public void setHistoriqueDepots(List<OperationDepot> historiqueDepots) {
+		this.historiqueDepots = historiqueDepots;
+	}
 
-    /**
-     * @return
-     */
-    public void enregistrer() {
-        // TODO implement here
-        return null;
-    }
 
-    /**
-     * @return
-     */
+	// méthodes personnalisés
+	
     public int consulterPoints() {
-        // TODO implement here
-        return 0;
+    	return this.pointsFidelite;
     }
 
-    /**
-     * @param offre 
-     * @return
-     */
+
     public boolean convertirPointsEnReduction(offreFidelite offre) {
-        // TODO implement here
+        if (this.pointsFidelite >= offre.getCout()) {
+            this.pointsFidelite -= offre.getCout();
+            return true;
+        }
         return false;
     }
 
-    /**
-     * 
-     */
-    public void convertirPoints() {
-        // TODO implement here
+    public void deposerDechets(List<Dechet> dechets, BacIntelligent bac) {
+        if (bac.verifierAcces(this.codeAcces)) {
+            int pointsGagnes = bac.ajouterDechet(dechets, this);
+            OperationDepot depot = new OperationDepot(this, bac, dechets, pointsGagnes);
+            historiqueDepots.add(depot);
+            ajouterPoints(pointsGagnes);
+        } else {
+            System.out.println("⛔ Accès refusé à la poubelle.");
+        }
+    }
+    
+    
+    public List<OperationDepot> afficheHistorique() {
+        return this.historiqueDepots;
     }
 
+ 
+    public void enregistrer() {
+        System.out.println("Ménage " + nom + " enregistré dans la base.");
+        // À relier avec JDBC plus tard
+    }
+
+	@Override
+	public String toString() {
+		return "Menage [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", adresseMail=" + adresseMail
+				+ ", codeAcces=" + codeAcces + ", pointsFidelite=" + pointsFidelite
+				+ ", historiqueDepots=" + historiqueDepots + "]";
+	}
+    
 }
