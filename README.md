@@ -31,3 +31,11 @@ donner ça comme droit au repo :
 ![WhatsApp Image 2025-04-19 à 15 03 22_e6808a27](https://github.com/user-attachments/assets/a1eeecaf-b89c-4d7f-b093-e3e57374e8a9)
 
 
+Quand tu fais Team > Push pour la première fois :
+
+    Username : leur nom GitHub (ex: alex-user)
+
+    Password : le token que tu viens de générer (et pas le mot de passe GitHub)
+
+Et il faut cocher "Save credentials" pour ne pas le retaper.
+
