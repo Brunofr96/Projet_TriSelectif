@@ -33,7 +33,7 @@ donner ça comme droit au repo :
 
 Quand tu fais Team > Push pour la première fois :
 
-    Username : leur nom GitHub (ex: alex-user)
+    Username : le nom GitHub
 
     Password : le token que tu viens de générer (et pas le mot de passe GitHub)
 
