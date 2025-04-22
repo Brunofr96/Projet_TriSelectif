@@ -1,5 +1,6 @@
 package model;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Menage {
 
@@ -115,7 +116,7 @@ public class Menage {
     }
 
 
-    public boolean convertirPointsEnReduction(offreFidelite offre) {
+    public boolean convertirPointsEnReduction(OffreFidelite offre) {
         if (this.pointsFidelite >= offre.getCout()) {
             this.pointsFidelite -= offre.getCout();
             return true;

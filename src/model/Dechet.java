@@ -1,33 +1,36 @@
 package model;
-import java.util.*;
 
 /**
- * 
+ * Représente un déchet déposé par un ménage.
  */
 public class Dechet {
 
-    /**
-     * Default constructor
-     */
-    public Dechet() {
-    }
-
-    /**
-     * 
-     */
-    private void type;
-
-    /**
-     * 
-     */
+    private TypeDechet type;
     private double poids;
 
-    /**
-     * @return
-     */
-    public double getPoids() {
-        // TODO implement here
-        return 0.0d;
+    public Dechet(TypeDechet type, double poids) {
+        this.type = type;
+        this.poids = poids;
     }
 
+    public TypeDechet getType() {
+        return type;
+    }
+
+    public void setType(TypeDechet type) {
+        this.type = type;
+    }
+
+    public double getPoids() {
+        return poids;
+    }
+
+    public void setPoids(double poids) {
+        this.poids = poids;
+    }
+
+    @Override
+    public String toString() {
+        return "Déchet [type=" + type + ", poids=" + poids + " kg]";
+    }
 }

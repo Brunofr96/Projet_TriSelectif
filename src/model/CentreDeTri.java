@@ -1,101 +1,94 @@
 package model;
+import model.Conditionneur;
+import model.Recycleur;
+
+
 import java.util.*;
 
 /**
- * 
+ * Classe représentant un centre de tri.
  */
 public class CentreDeTri {
 
-    /**
-     * Default constructor
-     */
-    public CentreDeTri() {
-    }
-
-    /**
-     * 
-     */
-    
     private String nom;
-
-    /**
-     * 
-     */
     private String adresse;
+    private List<BacIntelligent> poubelles;
+    private List<Conditionneur> conditionneurs;
+    private List<Recycleur> recycleurs;
 
-    /**
-     * 
-     */
-    private List poubelles;
-
-    /**
-     * 
-     */
-    private void conditionneurs;
-
-    /**
-     * 
-     */
-    private void recycleurs;
-
-    /**
-     * @param p 
-     * @return
-     */
-    public void ajouterPoubelle(BacIntelligente p) {
-        // TODO implement here
-        return null;
+    public CentreDeTri(String nom, String adresse) {
+        this.nom = nom;
+        this.adresse = adresse;
+        this.poubelles = new ArrayList<>();
+        this.conditionneurs = new ArrayList<>();
+        this.recycleurs = new ArrayList<>();
     }
 
-    /**
-     * @param p 
-     * @return
-     */
-    public void retirerPoubelle(BacIntelligente p) {
-        // TODO implement here
-        return null;
+    public void ajouterPoubelle(BacIntelligent p) {
+        poubelles.add(p);
     }
 
-    /**
-     * @return
-     */
+    public void retirerPoubelle(BacIntelligent p) {
+        poubelles.remove(p);
+    }
+
     public void collecterDechets() {
-        // TODO implement here
-        return null;
+        System.out.println("Collecte des déchets en cours...");
+        // Logique à développer si besoin
     }
 
-    /**
-     * @return
-     */
-    public Map genererStatistiques() {
-        // TODO implement here
-        return null;
+    public Map<String, Double> genererStatistiques() {
+        Map<String, Double> stats = new HashMap<>();
+        for (BacIntelligent bac : poubelles) {
+            stats.put(bac.getType().toString(), bac.getTotalPoids());
+        }
+        return stats;
     }
 
-    /**
-     * @param typeDechet  
-     * @return
-     */
-    public void envoyerDechet(TypeDechet typeDechet ) {
-        // TODO implement here
-        return null;
+    public void envoyerDechet(TypeDechet typeDechet) {
+        System.out.println("Envoi du déchet de type " + typeDechet + " au conditionneur/recycleur...");
+        // À compléter avec les conditionneurs/recycleurs associés
     }
 
-    /**
-     * 
-     */
     public void envoyerDechetsRecycleur() {
-        // TODO implement here
+        System.out.println("Envoi global des déchets aux recycleurs...");
+        // À compléter
     }
 
-    /**
-     * @param dechets 
-     * @param typePoubelle 
-     * @return
-     */
-    public boolean verifierTri(List<Dechet> dechets, void typePoubelle) {
-        // TODO implement here
-        return false;
+    public boolean verifierTri(List<Dechet> dechets, TypePoubelle typePoubelle) {
+        for (Dechet d : dechets) {
+            if (!typePoubelleAccepteDechet(typePoubelle, d.getType())) {
+                return false;
+            }
+        }
+        return true;
     }
 
+    private boolean typePoubelleAccepteDechet(TypePoubelle typePoubelle, TypeDechet typeDechet) {
+        switch (typePoubelle) {
+            case VERTE:
+                return typeDechet == TypeDechet.VERRE;
+            case JAUNE:
+                return typeDechet == TypeDechet.PLASTIQUE || typeDechet == TypeDechet.CARTON || typeDechet == TypeDechet.METAL;
+            case BLEUE:
+                return typeDechet == TypeDechet.PAPIER;
+            case CLASSIQUE:
+                return true; // accepte tout le reste
+            default:
+                return false;
+        }
+    }
+
+    // Getters et setters
+    public String getNom() {
+        return nom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public List<BacIntelligent> getPoubelles() {
+        return poubelles;
+    }
 }
