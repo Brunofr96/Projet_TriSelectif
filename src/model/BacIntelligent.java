@@ -1,6 +1,5 @@
 package model;
 import java.util.*;
-
 /**
  * Représente une poubelle intelligente avec contrôle d'accès et attribution de points.
  */
