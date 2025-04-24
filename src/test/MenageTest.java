@@ -15,7 +15,7 @@ public class MenageTest {
         Menage m = new Menage(2, "Famille Durand", "8 rue Bleue", "durand@mail.com", "1234", 5678, 0, null);
 
         // Création de la poubelle intelligente
-        BacIntelligent bac = new BacIntelligent(101, TypePoubelle.JAUNE, 50.0, "Rue de la Paix", true);
+        BacIntelligent bac = new BacIntelligent(101, TypePoubelle.JAUNE, 50.0, "Rue de la Paix");
         bac.ajouterCodeAccesAutorise(5678);  // autoriser le code du ménage
 
         // Création des déchets
@@ -36,8 +36,8 @@ public class MenageTest {
     }
 
     public void testDepotAccesRefuse() {
-        Menage m = new Menage(3, "Famille Refusée", "Rue Barrée", "refus@mail.com", "pass", 9999);
-        BacIntelligent bac = new BacIntelligent(102, TypePoubelle.VERTE, 30.0, "Place Rouge", true);
+        Menage m = new Menage(3, "Famille Refusée", "Rue Barrée", "refus@mail.com", "pass", 9999,0, null);
+        BacIntelligent bac = new BacIntelligent(102, TypePoubelle.VERTE, 30.0, "Place Rouge");
 
         // Aucun code autorisé ajouté → accès refusé attendu
         List<Dechet> dechets = List.of(new Dechet(TypeDechet.VERRE, 1.0));
