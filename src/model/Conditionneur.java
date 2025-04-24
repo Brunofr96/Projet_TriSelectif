@@ -1,5 +1,4 @@
 package model;
-
 public class Conditionneur {
     private int id;
     private String nom;
