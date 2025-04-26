@@ -1,14 +1,17 @@
 package model;
 
-/**
- * Représente un déchet déposé par un ménage.
- */
 public class Dechet {
 
     private TypeDechet type;
     private double poids;
 
     public Dechet(TypeDechet type, double poids) {
+        if (type == null) {
+            throw new IllegalArgumentException("Le type de déchet ne peut pas être null.");
+        }
+        if (poids < 0) {
+            throw new IllegalArgumentException("Le poids du déchet ne peut pas être négatif.");
+        }
         this.type = type;
         this.poids = poids;
     }
@@ -18,6 +21,9 @@ public class Dechet {
     }
 
     public void setType(TypeDechet type) {
+        if (type == null) {
+            throw new IllegalArgumentException("Le type de déchet ne peut pas être null.");
+        }
         this.type = type;
     }
 
@@ -26,6 +32,9 @@ public class Dechet {
     }
 
     public void setPoids(double poids) {
+        if (poids < 0) {
+            throw new IllegalArgumentException("Le poids du déchet ne peut pas être négatif.");
+        }
         this.poids = poids;
     }
 
