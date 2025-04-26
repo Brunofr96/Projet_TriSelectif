@@ -1,7 +1,4 @@
 package model;
-/**
- * 
- */
 public enum TypeDechet {
     PLASTIQUE,
     VERRE,
