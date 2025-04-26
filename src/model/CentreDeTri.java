@@ -1,6 +1,4 @@
 package model;
-import model.Conditionneur;
-import model.Recycleur;
 
 
 import java.util.*;
@@ -13,16 +11,15 @@ public class CentreDeTri {
     private String nom;
     private String adresse;
     private List<BacIntelligent> poubelles;
-    private List<Conditionneur> conditionneurs;
-    private List<Recycleur> recycleurs;
+    
 
     public CentreDeTri(String nom, String adresse) {
         this.nom = nom;
         this.adresse = adresse;
         this.poubelles = new ArrayList<>();
-        this.conditionneurs = new ArrayList<>();
-        this.recycleurs = new ArrayList<>();
+        
     }
+    
 
     public void ajouterPoubelle(BacIntelligent p) {
         poubelles.add(p);

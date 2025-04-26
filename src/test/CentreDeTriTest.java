@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CentreDeTriTest {
 
-    public static void main(String[] args) {
+    public static void runTests() {
 
         CentreDeTri centre = new CentreDeTri("Centre Nord", "Zone 1");
 

@@ -44,7 +44,7 @@ public class MenageTest {
         m.deposerDechets(dechets, bac);
     }
 
-    public static void main(String[] args) {
+    public static void runTests() {
         MenageTest test = new MenageTest();
 
         System.out.println("=== Test 1 : Création ===");

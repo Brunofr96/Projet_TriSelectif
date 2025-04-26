@@ -5,7 +5,7 @@ import java.util.*;
 
 public class BacIntelligentTest {
 
-    public static void main(String[] args) {
+    public static void runTests() {
 
         BacIntelligent bac = new BacIntelligent(1, TypePoubelle.JAUNE, 2.0, "Rue Verte");
 
