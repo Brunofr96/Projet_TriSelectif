@@ -4,7 +4,7 @@ package main;
 import test.*;
 
 
-// importe tous tes tests ici
+
 
 public class MainTest {
 
@@ -14,9 +14,9 @@ public class MainTest {
         System.out.println("=============================\n");
 
         try {
+        	MenageTest.runTests();
             BacIntelligentTest.runTests();
             CentreDeTriTest.runTests();
-            MenageTest.runTests();
             OffreFideliteTest.runTests();
             // appelle toutes les autres classes de test ici
         } catch (Exception e) {
