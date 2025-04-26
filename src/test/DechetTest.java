@@ -65,7 +65,7 @@ public class DechetTest {
     }
 
     // Main pour tout lancer
-    public static void main(String[] args) {
+    public static void runTests() {
         DechetTest test = new DechetTest();
 
         System.out.println("=== Test 1 : Création Déchet ===");

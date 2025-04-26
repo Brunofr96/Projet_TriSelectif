@@ -43,3 +43,4 @@ public class Dechet {
         return "Déchet [type=" + type + ", poids=" + poids + " kg]";
     }
 }
+	
