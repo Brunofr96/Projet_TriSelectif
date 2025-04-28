@@ -40,6 +40,11 @@ public class Menage {
 
     // Getters et Setters
     public String getNom() { return nom; }
+    
+    public int getId() {
+        return id;
+    }
+
 
     public void setNom(String nom) { this.nom = nom; }
 
