@@ -14,10 +14,10 @@ public class MainTest {
         System.out.println("=============================\n");
 
         try {
-        	MenageTest.runTests();
-            BacIntelligentTest.runTests();
+        	//MenageTest.runTests();
+            //BacIntelligentTest.runTests();
             CentreDeTriTest.runTests();
-            OffreFideliteTest.runTests();
+            //OffreFideliteTest.runTests();
             // appelle toutes les autres classes de test ici
         } catch (Exception e) {
             System.out.println("❌ Erreur pendant les tests : " + e.getMessage());

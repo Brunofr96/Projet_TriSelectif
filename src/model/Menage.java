@@ -94,7 +94,7 @@ public class Menage {
             historiqueDepots.add(depot);
             ajouterPoints(pointsGagnes);
         } else {
-            System.out.println("⛔ Accès refusé à la poubelle.");
+            System.out.println(" Accès refusé à la poubelle.");
         }
     }
 

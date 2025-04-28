@@ -1,6 +1,7 @@
 package test;
 
 import model.*;
+
 import java.util.*;
 
 public class CentreDeTriTest {
@@ -26,10 +27,11 @@ public class CentreDeTriTest {
         ), null);
 
         // Générer statistiques
-        System.out.println("\n📊 Statistiques par type de bac :");
+        System.out.println("\n Statistiques par type de bac :");
         Map<String, Double> stats = centre.genererStatistiques();
         for (String type : stats.keySet()) {
-            System.out.println(type + " ➔ " + stats.get(type) + " kg");
+            System.out.println(type + " -> " + stats.get(type) + " kg");
         }
     }
 }
+

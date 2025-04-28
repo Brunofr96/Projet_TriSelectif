@@ -27,10 +27,10 @@ public class Commerce {
     public boolean offrirReduction(Menage m, OffreFidelite offre) {
         if (m.getPointsFidelite() >= offre.getCout()) {
             m.setPointsFidelite(m.getPointsFidelite() - offre.getCout());
-            System.out.println("✅ Réduction appliquée à " + m.getNom());
+            System.out.println(" Réduction appliquée à " + m.getNom());
             return true;
         } else {
-            System.out.println("❌ Pas assez de points pour " + m.getNom());
+            System.out.println(" Pas assez de points pour " + m.getNom());
             return false;
         }
     }
