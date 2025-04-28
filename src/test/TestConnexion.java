@@ -1,3 +1,4 @@
+package test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,10 +12,10 @@ public class TestConnexion {
 
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("✅ Connexion à MySQL réussie !");
+            System.out.println("Connexion à MySQL réussie !");
             connection.close();
         } catch (SQLException e) {
-            System.out.println("❌ Erreur de connexion !");
+            System.out.println("Erreur de connexion !");
             e.printStackTrace();
         }
     }
