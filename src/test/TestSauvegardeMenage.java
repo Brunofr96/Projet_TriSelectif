@@ -1,3 +1,4 @@
+package test;
 import dao.MenageDAO;
 import model.Menage;
 import java.util.ArrayList;
