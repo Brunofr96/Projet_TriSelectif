@@ -7,7 +7,7 @@ public class MenageTest {
 
     public void testCreationMenage() {
         Menage m = new Menage(1, "Famille Martin", "12 rue des Lilas", "martin@mail.com", "azerty", 1234, 0, null);
-        System.out.println("✅ Test création Ménage : " + m.getNom());
+        System.out.println("Test création Ménage : " + m.getNom());
     }
 
     public void testDepotAvecPoints() {
@@ -47,13 +47,13 @@ public class MenageTest {
     public static void runTests() {
         MenageTest test = new MenageTest();
 
-        System.out.println("=== Test 1 : Création ===");
+        System.out.println("Test 1 : Création");
         test.testCreationMenage();
 
-        System.out.println("\n=== Test 2 : Dépôt autorisé ===");
+        System.out.println("\n Test 2 : Dépôt autorisé");
         test.testDepotAvecPoints();
 
-        System.out.println("\n=== Test 3 : Accès refusé ===");
+        System.out.println("\n Test 3 : Accès refusé");
         test.testDepotAccesRefuse();
     }
 }

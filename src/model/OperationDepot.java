@@ -65,7 +65,7 @@ public class OperationDepot {
     }
     
     public void enregistrerDepot(Menage m, BacIntelligent b) {
-	    System.out.println("==> Dépôt enregistré :");
+	    System.out.println("--> Dépôt enregistré :");
 	    System.out.println("Ménage : " + m.getNom());
 	    System.out.println("Bac : " + b.getType());
 	    System.out.println("Poids : " + this.quantite + " kg");

@@ -43,7 +43,7 @@ public class BacIntelligent {
                 dechets.add(d);
                 pointsTotal += calculerPoints(d);
             } else {
-                System.out.println("❌ Déchet non conforme au type de bac !");
+                System.out.println(" Déchet non conforme au type de bac !");
                 pointsTotal -= 5; // pénalité
             }
         }
@@ -79,7 +79,7 @@ public class BacIntelligent {
 
     // Notifie le centre de tri que le bac est plein
     public void notifierCentreDeTri() {
-        System.out.println("⚠️ Bac " + id + " (" + type + ") est plein à l'emplacement : " + emplacement);
+        System.out.println(" Bac " + id + " (" + type + ") est plein à l'emplacement : " + emplacement);
     }
 
     // Calcule le poids total des déchets dans le bac

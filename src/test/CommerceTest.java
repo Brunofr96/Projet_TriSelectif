@@ -5,10 +5,10 @@ import model.*;
 public class CommerceTest {
 
     public static void runTest() {
-        System.out.println("=== Test 1 : Réduction appliquée ===");
+        System.out.println(" Test 1 : Réduction appliquée");
         testReductionSuffisante();
 
-        System.out.println("\n=== Test 2 : Réduction refusée (pas assez de points) ===");
+        System.out.println("\n Test 2 : Réduction refusée (pas assez de points)");
         testReductionInsuffisante();
     }
 
