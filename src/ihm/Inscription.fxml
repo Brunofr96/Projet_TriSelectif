@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.InscriptionController" prefHeight="400.0" prefWidth="400.0">
+    <children>
+        <Label layoutX="30" layoutY="20" text="Inscription" style="-fx-font-size: 20;" />
+
+        <Label layoutX="30" layoutY="80" text="Nom :" />
+        <TextField fx:id="nomField" layoutX="150" layoutY="75" prefWidth="200"/>
+
+        <Label layoutX="30" layoutY="120" text="Adresse :" />
+        <TextField fx:id="adresseField" layoutX="150" layoutY="115" prefWidth="200"/>
+
+        <Label layoutX="30" layoutY="160" text="Email :" />
+        <TextField fx:id="mailField" layoutX="150" layoutY="155" prefWidth="200"/>
+
+        <Label layoutX="30" layoutY="200" text="Mot de passe :" />
+        <PasswordField fx:id="motDePasseField" layoutX="150" layoutY="195" prefWidth="200"/>
+
+        <Label layoutX="30" layoutY="240" text="Code d'accès :" />
+        <TextField fx:id="codeAccesField" layoutX="150" layoutY="235" prefWidth="200"/>
+
+        <Button fx:id="validerButton" layoutX="150" layoutY="290" text="Valider" onAction="#handleInscription" prefWidth="100"/>
+
+        <Label fx:id="messageLabel" layoutX="80" layoutY="340" text=""/>
+    </children>
+</AnchorPane>

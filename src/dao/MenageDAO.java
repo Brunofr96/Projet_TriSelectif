@@ -16,12 +16,12 @@ public class MenageDAO {
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(2, menage.getNom());
-            stmt.setString(3, menage.getAdresse());
-            stmt.setString(4, menage.getAdresseMail());
-            stmt.setString(5, menage.getMotDePasse());
-            stmt.setInt(6, menage.getCodeAcces());
-            stmt.setInt(7, menage.getPointsFidelite());
+            stmt.setString(1, menage.getNom());
+            stmt.setString(2, menage.getAdresse());
+            stmt.setString(3, menage.getAdresseMail());
+            stmt.setString(4, menage.getMotDePasse());
+            stmt.setInt(5, menage.getCodeAcces());
+            stmt.setInt(6, menage.getPointsFidelite());
 
             stmt.executeUpdate();
             System.out.println("✅ Ménage enregistré avec succès !");
@@ -41,13 +41,11 @@ public class MenageDAO {
 
             if (rs.next()) {
                 return new Menage(
-                    rs.getInt("Id_Menage"),
                     rs.getString("nom"),
                     rs.getString("adresse"),
                     rs.getString("adresseMail"),
                     rs.getString("motDePasse"),
                     rs.getInt("codeAcces"),
-                    rs.getInt("pointsFidelite"),
                     null // historique à charger à part si besoin
                 );
             }
@@ -70,13 +68,11 @@ public class MenageDAO {
 
             while (rs.next()) {
                 menages.add(new Menage(
-                    rs.getInt("Id_Menage"),
                     rs.getString("nom"),
                     rs.getString("adresse"),
                     rs.getString("adresseMail"),
                     rs.getString("motDePasse"),
                     rs.getInt("codeAcces"),
-                    rs.getInt("pointsFidelite"),
                     null
                 ));
             }

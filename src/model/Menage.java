@@ -26,15 +26,14 @@ public class Menage {
     }
 
     // Constructeur avec tous les attributs
-    public Menage(int id, String nom, String adresse, String adresseMail, String motDePasse, int codeAcces,
-                  int pointsFidelite, List<OperationDepot> historiqueDepots) {
-        this.id = id;
+    public Menage(String nom, String adresse, String adresseMail, String motDePasse, int codeAcces,
+                   List<OperationDepot> historiqueDepots) {
         this.nom = nom;
         this.adresse = adresse;
         this.adresseMail = adresseMail;
         this.motDePasse = motDePasse;
         this.codeAcces = codeAcces;
-        this.pointsFidelite = pointsFidelite;
+        this.pointsFidelite = 0;
         this.historiqueDepots = (historiqueDepots != null) ? historiqueDepots : new ArrayList<>();
     }
 

@@ -7,13 +7,11 @@ public class TestSauvegardeMenage {
     public static void main(String[] args) {
         // Créer un Menage fictif
         Menage menage = new Menage(
-            4,                      // id
-            "Famille Dupont",        // nom
-            "12 rue Verte",          // adresse
-            "dupont@mail.com",       // adresseMail
-            "motdepasse123",         // motDePasse
-            1234,                    // codeAcces
-            50,                      // pointsFidelite
+            "Famille Athi",        // nom
+            "12 rue Konoha",          // adresse
+            "naruto@gmail.com",       // adresseMail
+            "hinata123",         // motDePasse
+            2808,                    // codeAcces
             new ArrayList<>()        // historique vide pour le moment
         );
 

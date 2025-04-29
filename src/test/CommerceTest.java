@@ -14,7 +14,7 @@ public class CommerceTest {
 
     public static void testReductionSuffisante() {
         // Création d'un ménage avec assez de points
-        Menage menage = new Menage(1, "Famille Points", "10 rue Fidèle", "fidel@mail.com", "pass", 1234, 50, null);
+        Menage menage = new Menage("Famille Points", "10 rue Fidèle", "fidel@mail.com", "pass", 1234, null);
 
         // Création d'une offre fidélité
         OffreFidelite offre = new OffreFidelite(1, "Réduction 5%", 20, "alimentaire");
@@ -33,7 +33,7 @@ public class CommerceTest {
 
     public static void testReductionInsuffisante() {
         // Création d'un ménage avec trop peu de points
-        Menage menage = new Menage(2, "Famille Fauchée", "20 rue Pauvre", "pauvre@mail.com", "pass", 5678, 10, null);
+        Menage menage = new Menage("Famille Fauchée", "20 rue Pauvre", "pauvre@mail.com", "pass", 5678, null);
 
         // Création d'une offre fidélité plus chère que les points
         OffreFidelite offre = new OffreFidelite(2, "Réduction 10%", 30, "électroménager");

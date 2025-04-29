@@ -6,7 +6,7 @@ public class OffreFideliteTest {
 
     public static void runTests() {
 
-        Menage m = new Menage(1, "Famille Points", "10 rue Fidèle", "fidel@mail.com", "pass", 1234, 20, null);
+        Menage m = new Menage("Famille Points", "10 rue Fidèle", "fidel@mail.com", "pass", 1234, null);
 
         OffreFidelite offre1 = new OffreFidelite(1, "Réduction 5%", 15, "alimentaire");
         OffreFidelite offre2 = new OffreFidelite(2, "Réduction 10%", 30, "hygiène");
