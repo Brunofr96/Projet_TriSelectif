@@ -34,7 +34,7 @@ public class BacIntelligent {
         return codesAccesAutorises.contains(code);
     }
 
-    // Ajoute des déchets à la poubelle et retourne les points gagnés
+ // Ajoute des déchets à la poubelle et retourne les points gagnés
     public int ajouterDechet(List<Dechet> nouveauxDechets, Menage menage) {
         int pointsTotal = 0;
 
