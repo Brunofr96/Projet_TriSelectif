@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.InscriptionController" prefHeight="400.0" prefWidth="400.0">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controller.InscriptionController">
     <children>
-        <Label layoutX="30" layoutY="20" text="Inscription" style="-fx-font-size: 20;" />
+        <Label layoutX="30" layoutY="20" style="-fx-font-size: 20;" text="Inscription" />
 
         <Label layoutX="30" layoutY="80" text="Nom :" />
-        <TextField fx:id="nomField" layoutX="150" layoutY="75" prefWidth="200"/>
+        <TextField fx:id="nomField" layoutX="150" layoutY="75" prefWidth="200" />
 
         <Label layoutX="30" layoutY="120" text="Adresse :" />
-        <TextField fx:id="adresseField" layoutX="150" layoutY="115" prefWidth="200"/>
+        <TextField fx:id="adresseField" layoutX="150" layoutY="115" prefWidth="200" />
 
         <Label layoutX="30" layoutY="160" text="Email :" />
-        <TextField fx:id="mailField" layoutX="150" layoutY="155" prefWidth="200"/>
+        <TextField fx:id="mailField" layoutX="150" layoutY="155" prefWidth="200" />
 
         <Label layoutX="30" layoutY="200" text="Mot de passe :" />
-        <PasswordField fx:id="motDePasseField" layoutX="150" layoutY="195" prefWidth="200"/>
+        <PasswordField fx:id="motDePasseField" layoutX="150" layoutY="195" prefWidth="200" />
 
         <Label layoutX="30" layoutY="240" text="Code d'accès :" />
-        <TextField fx:id="codeAccesField" layoutX="150" layoutY="235" prefWidth="200"/>
+        <TextField fx:id="codeAccesField" layoutX="150" layoutY="235" prefWidth="200" />
 
-        <Button fx:id="validerButton" layoutX="150" layoutY="290" text="Valider" onAction="#handleInscription" prefWidth="100"/>
+        <Button fx:id="validerButton" layoutX="150" layoutY="290" onAction="#handleInscription" prefWidth="100" text="Valider" />
 
-        <Label fx:id="messageLabel" layoutX="80" layoutY="340" text=""/>
+        <Label fx:id="messageLabel" layoutX="80" layoutY="340" text="" />
+      <Button fx:id="retourButton" layoutX="28.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleRetour" prefHeight="25.0" prefWidth="76.0" text="Retour" />
     </children>
 </AnchorPane>

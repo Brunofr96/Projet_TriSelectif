@@ -27,15 +27,29 @@ public class Menage {
 
     // Constructeur avec tous les attributs
     public Menage(String nom, String adresse, String adresseMail, String motDePasse, int codeAcces,
-                   List<OperationDepot> historiqueDepots) {
+                   int pointsFidelite, List<OperationDepot> historiqueDepots) {
         this.nom = nom;
         this.adresse = adresse;
         this.adresseMail = adresseMail;
         this.motDePasse = motDePasse;
         this.codeAcces = codeAcces;
-        this.pointsFidelite = 0;
+        this.pointsFidelite = pointsFidelite;
         this.historiqueDepots = (historiqueDepots != null) ? historiqueDepots : new ArrayList<>();
     }
+    
+    //Constructeur pour l'inscription sans pointsFidelite
+    public Menage(String nom, String adresse, String adresseMail, String motDePasse, int codeAcces,
+            List<OperationDepot> historiqueDepots) {
+	  this.nom = nom;
+	  this.adresse = adresse;
+	  this.adresseMail = adresseMail;
+	  this.motDePasse = motDePasse;
+	  this.codeAcces = codeAcces;
+	  this.pointsFidelite = 0; 
+	  this.historiqueDepots = (historiqueDepots != null) ? historiqueDepots : new ArrayList<>();
+    }
+
+    
 
     // Getters et Setters
     public String getNom() { return nom; }

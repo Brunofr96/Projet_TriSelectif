@@ -76,6 +76,7 @@ public class ConnexionController {
                     rs.getString("adresseMail"),
                     rs.getString("motDePasse"),
                     rs.getInt("CodeAcces"),
+                    rs.getInt("pointsFidelite"),
                     null
                 );
             }
@@ -87,4 +88,22 @@ public class ConnexionController {
 
         return null;
     }
+    
+    @FXML
+    private void handleInscription() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/Inscription.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) inscriptionButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inscription");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            messageLabel.setText("Erreur lors du chargement de l'inscription.");
+        }
+    }
+
 }

@@ -11,7 +11,7 @@
       <Text layoutX="27.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion Ménage" wrappingWidth="545.13671875" />
       <TextField fx:id="codeAcces" layoutX="226.0" layoutY="129.0" promptText="Code Acces" />
       <Button fx:id="connexionButton" layoutX="256.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleConnexion" text="Se Connecter" />
-      <Button fx:id="inscriptionButton" layoutX="226.0" layoutY="258.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Inscription" />
+      <Button fx:id="inscriptionButton" layoutX="226.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleInscription" prefHeight="25.0" prefWidth="149.0" text="Inscription" />
       <Label fx:id="messageLabel" layoutX="217.0" layoutY="326.0" prefHeight="17.0" prefWidth="168.0" text="Message" />
    </children>
 </AnchorPane>
