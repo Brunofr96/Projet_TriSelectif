@@ -39,13 +39,22 @@ public class BacIntelligent {
         int pointsTotal = 0;
 
         for (Dechet d : nouveauxDechets) {
-            if (dechetsConformes(d)) {
-                dechets.add(d);
-                pointsTotal += calculerPoints(d);
-            } else {
+            if (!dechetsConformes(d)) {
                 System.out.println(" Déchet non conforme au type de bac !");
                 pointsTotal -= 5; // pénalité
+                continue;
             }
+
+            double poidsApresAjout = getTotalPoids() + d.getPoids();
+            if (poidsApresAjout > capaciteMax) {
+                System.out.println("Bac plein : impossible d’ajouter ce déchet.");
+                estPleine = true;
+                notifierCentreDeTri();
+                break; // on n'ajoute plus rien
+            }
+
+            dechets.add(d);
+            pointsTotal += calculerPoints(d);
         }
 
         if (getTotalPoids() >= capaciteMax) {
@@ -55,6 +64,7 @@ public class BacIntelligent {
 
         return pointsTotal;
     }
+
 
     // Vérifie si un déchet est conforme à la catégorie de la poubelle
     private boolean dechetsConformes(Dechet d) {

@@ -12,12 +12,12 @@ public class MainTest {
         
 
         try {
-        	//MenageTest.runTests();
-            //BacIntelligentTest.runTests();
+        	MenageTest.runTests();
+            BacIntelligentTest.runTests();
             //DechetTest.runTests();
             //CentreDeTriTest.runTests();
             //OffreFideliteTest.runTests();
-            CommerceTest.runTest();
+            //CommerceTest.runTest();
             // appelle toutes les autres classes de test ici
         } catch (Exception e) {
             System.out.println("Erreur pendant les tests : " + e.getMessage());
