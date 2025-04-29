@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,15 +10,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Menage;
-import controller.AccueilController;
+import javafx.scene.control.PasswordField;
+
 
 import java.io.IOException;
 import java.sql.*;
 
 public class ConnexionController {
+	
+	@FXML
+	private TextField mailAcess;
 
-    @FXML
-    private TextField codeAcces;
+	@FXML
+	private PasswordField mdpAcess;
 
     @FXML
     private Button connexionButton;
@@ -30,9 +35,10 @@ public class ConnexionController {
 
     @FXML
     private void handleConnexion() {
-        String code = codeAcces.getText().trim();
+        String mail = mailAcess.getText().trim();
+        String motDePasse = mdpAcess.getText().trim();
 
-        Menage menage = getMenageDepuisCode(code); // récupération de l'objet
+        Menage menage = getMenageDepuisMailEtMdp(mail, motDePasse); // 
 
         if (menage != null) {
             try {
@@ -40,7 +46,7 @@ public class ConnexionController {
                 Parent accueilRoot = loader.load();
 
                 AccueilController controller = loader.getController();
-                controller.setMenage(menage); // passage de l’objet à la vue suivante
+                controller.setMenage(menage);
 
                 Stage stage = (Stage) connexionButton.getScene().getWindow();
                 stage.setScene(new Scene(accueilRoot));
@@ -52,21 +58,22 @@ public class ConnexionController {
                 messageLabel.setText("Erreur lors du chargement de la page.");
             }
         } else {
-            messageLabel.setText("Code incorrect !");
+            messageLabel.setText("Email ou mot de passe incorrect !");
         }
     }
 
-    private Menage getMenageDepuisCode(String codeSaisi) {
+    private Menage getMenageDepuisMailEtMdp(String mail, String motDePasse) {
         String url = "jdbc:mysql://switchyard.proxy.rlwy.net:31810/railway";
         String user = "root";
         String password = "eICpmWwoOAPDdTIqkCGclypNTfbCtttY";
 
-        String query = "SELECT * FROM Menage WHERE CodeAcces = ?";
+        String query = "SELECT * FROM Menage WHERE adresseMail = ? AND motDePasse = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, codeSaisi);
+            stmt.setString(1, mail);
+            stmt.setString(2, motDePasse);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -88,6 +95,7 @@ public class ConnexionController {
 
         return null;
     }
+
     
     @FXML
     private void handleInscription() {
