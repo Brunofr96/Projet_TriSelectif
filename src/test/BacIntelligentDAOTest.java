@@ -3,6 +3,7 @@ import dao.BacIntelligentDAO;
 import model.BacIntelligent;
 import model.TypePoubelle;
 
+
 public class BacIntelligentDAOTest {
 
     public static void main(String[] args) {
