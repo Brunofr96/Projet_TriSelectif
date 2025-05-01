@@ -39,3 +39,30 @@ Quand tu fais Team > Push pour la première fois :
 
 Et il faut cocher "Save credentials" pour ne pas le retaper.
 
+
+Pour lancer les IHM : 
+
+D'abord faire un git pull origin master pour récup mes dernires modifications
+
+Ensuite clique droit sur le projet > Build path > configure Build path ...
+
+Sur l'onglet Librairie : 
+
+Sélectionnez Classpath > Add Librairy
+
+Il y a deux choses a faire importer : 
+	
+	- javafx (qui se trouve dans User Librairy)
+	- JavaFX SDK (dans JavaFX SDK) 
+
+Vérifier que le MySQL connector est bien connecté lors des pull il se peut qu'il soit pas valide et du coup faut redonner le chemin
+
+Ensuite Apply and Close
+
+Après ça vérifier bien que vous avez les dossiers Controlleurs et IHM 
+
+Enfin pour lancer L'IHM vous allez dans le dossier Main, main.java et vous le lancer 
+
+Et normalement tout marche !!
+
+
