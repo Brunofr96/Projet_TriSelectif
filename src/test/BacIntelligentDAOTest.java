@@ -1,5 +1,4 @@
 package test;
-
 import dao.BacIntelligentDAO;
 import model.BacIntelligent;
 import model.TypePoubelle;
