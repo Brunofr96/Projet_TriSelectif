@@ -40,7 +40,7 @@ Quand tu fais Team > Push pour la première fois :
 Et il faut cocher "Save credentials" pour ne pas le retaper.
 
 
-Pour lancer les IHM : 
+# Pour lancer les IHM : 
 
 D'abord faire un git pull origin master pour récup mes dernires modifications
 
