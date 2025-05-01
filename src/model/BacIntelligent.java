@@ -1,56 +1,58 @@
 package model;
+
 import java.util.*;
+
 /**
  * Représente une poubelle intelligente avec contrôle d'accès et attribution de points.
  */
 public class BacIntelligent {
 
-    private int id;
-    private TypePoubelle type;
+    private int idBacIntelligent;
     private double capaciteMax;
     private String emplacement;
     private boolean estPleine;
 
+    private TypePoubelle typePoubelle;           // En BDD → Id_TypePoubelle (stocké en texte ou FK)
+    private int idCentreDeTri;                   // Clé étrangère (reliée au Centre)
+
     private List<Dechet> dechets;
     private Set<Integer> codesAccesAutorises;
 
-    public BacIntelligent(int id, TypePoubelle type, double capaciteMax, String emplacement) {
-        this.id = id;
-        this.type = type;
+    public BacIntelligent(int idBacIntelligent, TypePoubelle typePoubelle, double capaciteMax, String emplacement) {
+        this.idBacIntelligent = idBacIntelligent;
+        this.typePoubelle = typePoubelle;
         this.capaciteMax = capaciteMax;
         this.emplacement = emplacement;
+        this.estPleine = false;
+
         this.dechets = new ArrayList<>();
         this.codesAccesAutorises = new HashSet<>();
-        this.estPleine = false;
     }
 
-    // Ajoute un code d’accès autorisé
     public void ajouterCodeAccesAutorise(int code) {
         codesAccesAutorises.add(code);
     }
 
-    // Vérifie si un code est autorisé à accéder à la poubelle
     public boolean verifierAcces(int code) {
         return codesAccesAutorises.contains(code);
     }
 
- // Ajoute des déchets à la poubelle et retourne les points gagnés
     public int ajouterDechet(List<Dechet> nouveauxDechets, Menage menage) {
         int pointsTotal = 0;
 
         for (Dechet d : nouveauxDechets) {
             if (!dechetsConformes(d)) {
-                System.out.println(" Déchet non conforme au type de bac !");
-                pointsTotal -= 5; // pénalité
+                System.out.println("❌ Déchet non conforme au type de bac !");
+                pointsTotal -= 5;
                 continue;
             }
 
             double poidsApresAjout = getTotalPoids() + d.getPoids();
             if (poidsApresAjout > capaciteMax) {
-                System.out.println("Bac plein : impossible d’ajouter ce déchet.");
+                System.out.println("⚠️ Bac plein : impossible d’ajouter ce déchet.");
                 estPleine = true;
                 notifierCentreDeTri();
-                break; // on n'ajoute plus rien
+                break;
             }
 
             dechets.add(d);
@@ -65,10 +67,8 @@ public class BacIntelligent {
         return pointsTotal;
     }
 
-
-    // Vérifie si un déchet est conforme à la catégorie de la poubelle
     private boolean dechetsConformes(Dechet d) {
-        switch (type) {
+        switch (typePoubelle) {
             case VERTE:
                 return d.getType() == TypeDechet.VERRE;
             case JAUNE:
@@ -82,28 +82,26 @@ public class BacIntelligent {
         }
     }
 
-    // Calcule les points de fidélité en fonction du poids
     public int calculerPoints(Dechet d) {
         return (int) (d.getPoids() * 10);
     }
 
-    // Notifie le centre de tri que le bac est plein
     public void notifierCentreDeTri() {
-        System.out.println(" Bac " + id + " (" + type + ") est plein à l'emplacement : " + emplacement);
+        System.out.println("📢 Bac " + idBacIntelligent + " (" + typePoubelle + ") est plein à : " + emplacement);
     }
 
-    // Calcule le poids total des déchets dans le bac
     public double getTotalPoids() {
         return dechets.stream().mapToDouble(Dechet::getPoids).sum();
     }
 
-    // Getters
+    // ✅ Getters & Setters
+
     public int getId() {
-        return id;
+        return idBacIntelligent;
     }
 
-    public TypePoubelle getType() {
-        return type;
+    public double getCapaciteMax() {
+        return capaciteMax;
     }
 
     public String getEmplacement() {
@@ -112,6 +110,18 @@ public class BacIntelligent {
 
     public boolean isEstPleine() {
         return estPleine;
+    }
+
+    public TypePoubelle getType() {
+        return typePoubelle;
+    }
+
+    public int getIdCentreDeTri() {
+        return idCentreDeTri;
+    }
+
+    public void setIdCentreDeTri(int idCentreDeTri) {
+        this.idCentreDeTri = idCentreDeTri;
     }
 
     public List<Dechet> getDechets() {
