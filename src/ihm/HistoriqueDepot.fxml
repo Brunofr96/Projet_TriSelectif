@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="303.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoriqueDepotController">
+
+    <children>
+
+        <!-- Titre -->
+        <Label layoutX="20" layoutY="10" text="Historique de mes dépôts">
+            <font>
+                <Font size="18" />
+            </font>
+        </Label>
+
+        <!-- Tableau -->
+        <TableView fx:id="historiqueTable" layoutX="20" layoutY="50" prefHeight="186.0" prefWidth="601.0">
+
+            <columns>
+                <TableColumn fx:id="colBac" prefWidth="100" text="Bac" />
+                <TableColumn fx:id="colType" prefWidth="140" text="Type de déchet" />
+                <TableColumn fx:id="colQuantite" prefWidth="120" text="Quantité" />
+                <TableColumn fx:id="colDateDepot" prefWidth="140" text="Date du dépôt" />
+				<TableColumn fx:id="colPoints" prefWidth="100" text="Points gagnés" />
+                
+            </columns>
+        </TableView>
+
+        <!-- Bouton retour -->
+        <Button fx:id="btnRetour" layoutX="271.0" layoutY="250.0" prefWidth="100" style="-fx-font-weight: bold;" text="Retour" />
+    </children>
+</AnchorPane>

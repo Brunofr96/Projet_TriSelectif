@@ -42,14 +42,14 @@ public class BacIntelligent {
 
         for (Dechet d : nouveauxDechets) {
             if (!dechetsConformes(d)) {
-                System.out.println("❌ Déchet non conforme au type de bac !");
+                System.out.println(" Déchet non conforme au type de bac !");
                 pointsTotal -= 5;
                 continue;
             }
 
             double poidsApresAjout = getTotalPoids() + d.getPoids();
             if (poidsApresAjout > capaciteMax) {
-                System.out.println("⚠️ Bac plein : impossible d’ajouter ce déchet.");
+                System.out.println(" Bac plein : impossible d’ajouter ce déchet.");
                 estPleine = true;
                 notifierCentreDeTri();
                 break;
@@ -131,4 +131,10 @@ public class BacIntelligent {
     public Set<Integer> getCodesAccesAutorises() {
         return codesAccesAutorises;
     }
+    
+    @Override
+    public String toString() {
+        return typePoubelle.toString() + " - " + emplacement;
+    }
+
 }

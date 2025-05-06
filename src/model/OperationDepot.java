@@ -64,6 +64,16 @@ public class OperationDepot {
                 + "Poids : " + quantite + " kg | Points : " + pointsGagnes + "\n";
     }
     
+	public String getDateDepotFormatee() {
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+	    return this.dateDepot.format(formatter);
+	}
+	
+	public void setDateDepot(LocalDateTime dateDepot) {
+	    this.dateDepot = dateDepot;
+	}
+
+    
     public void enregistrerDepot(Menage m, BacIntelligent b) {
 	    System.out.println("--> Dépôt enregistré :");
 	    System.out.println("Ménage : " + m.getNom());
@@ -71,5 +81,19 @@ public class OperationDepot {
 	    System.out.println("Poids : " + this.quantite + " kg");
 	    System.out.println("Points gagnés : " + this.pointsGagnes);
     }
+    public String getNomBac() {
+        if (bac != null && bac.getType() != null) {
+            return bac.getType().toString();
+        }
+        return "Inconnu";
+    }
+
+    public String getTypeDechet() {
+        if (dechets != null && !dechets.isEmpty() && dechets.get(0).getType() != null) {
+            return dechets.get(0).getType().toString();
+        }
+        return "Inconnu";
+    }
+
 
 }
