@@ -82,9 +82,30 @@ public class AccueilController {
 
     @FXML
     public void retourAccueil() {
-        System.out.println("🔁 Retour accueil déclenché.");
+        System.out.println("Retour accueil déclenché.");
         // Tu peux y mettre un vrai retour ou navigation plus tard
     }
+    
+ // ➤ Bouton "Historique des dépôts"
+    @FXML
+    private void ouvrirHistorique() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/HistoriqueDepot.fxml"));
+            Parent root = loader.load();
+
+            controller.HistoriqueDepotController controller = loader.getController();
+            controller.setMenageConnecte(utilisateurActuel);
+
+            Stage stage = new Stage();
+            stage.setTitle("Historique de mes dépôts");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // ➤ Les autres boutons peuvent être ajoutés de la même manière (historique, offres, etc.)
 }

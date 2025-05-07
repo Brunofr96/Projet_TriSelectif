@@ -78,6 +78,7 @@ public class ConnexionController {
 
             if (rs.next()) {
                 return new Menage(
+                	rs.getInt("Id_Menage"),
                     rs.getString("nom"),
                     rs.getString("adresse"),
                     rs.getString("adresseMail"),
