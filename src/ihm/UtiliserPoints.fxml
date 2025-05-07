@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.UtiliserPointsController"
+            prefWidth="600.0" prefHeight="400.0">
+
+    <children>
+
+        <!-- Solde points -->
+        <Label fx:id="pointsLabel" layoutX="20" layoutY="20" text="Mes points : [X]" style="-fx-font-size: 16;" />
+
+        <!-- Table des bons de réduction -->
+        <TableView fx:id="bonsTable" layoutX="20" layoutY="60" prefWidth="560" prefHeight="250">
+            <columns>
+                <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="250" />
+                <TableColumn fx:id="coutColumn" text="Coût en points" prefWidth="150" />
+                <TableColumn fx:id="actionColumn" text="Utiliser" prefWidth="160" />
+            </columns>
+        </TableView>
+
+        <!-- Message de confirmation -->
+        <Label fx:id="confirmationLabel" layoutX="20" layoutY="330" prefWidth="560" text="Message de confirmation" style="-fx-text-fill: green;" />
+
+        <!-- Bouton retour -->
+        <Button fx:id="retourButton" layoutX="20" layoutY="360" text="Retour" onAction="#handleRetour" />
+
+    </children>
+</AnchorPane>

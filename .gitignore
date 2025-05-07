@@ -1,1 +1,13 @@
 /bin/
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+/bin/
+/build/
+/out/
+*.jar
+lib/
+.DS_Store
+Thumbs.db
