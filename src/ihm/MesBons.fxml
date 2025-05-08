@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MesBonsController"
+            prefWidth="600.0" prefHeight="400.0">
+
+    <children>
+
+        <Label text="Mes Bons d'achat" layoutX="20" layoutY="20" style="-fx-font-size: 18;" />
+
+        <TableView fx:id="bonsTable" layoutX="20" layoutY="60" prefWidth="560" prefHeight="280">
+            <columns>
+                <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="300" />
+                <TableColumn fx:id="quantiteColumn" text="Quantité" prefWidth="100" />
+            </columns>
+        </TableView>
+
+        <Button fx:id="retourButton" text="Retour" layoutX="20" layoutY="360" onAction="#handleRetour" />
+
+    </children>
+</AnchorPane>

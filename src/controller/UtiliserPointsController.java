@@ -1,40 +1,31 @@
 package controller;
 
+import dao.BonPossedeDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
 import model.Menage;
 import model.OffreFidelite;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UtiliserPointsController {
 
-    @FXML
-    private Label pointsLabel;
-
-    @FXML
-    private TableView<OffreFidelite> bonsTable;
-
-    @FXML
-    private TableColumn<OffreFidelite, String> descriptionColumn;
-
-    @FXML
-    private TableColumn<OffreFidelite, Integer> coutColumn;
-
-    @FXML
-    private TableColumn<OffreFidelite, Void> actionColumn;
-
-    @FXML
-    private Label confirmationLabel;
-
-    @FXML
-    private Button retourButton;
+    @FXML private Label pointsLabel;
+    @FXML private TableView<OffreFidelite> bonsTable;
+    @FXML private TableColumn<OffreFidelite, String> descriptionColumn;
+    @FXML private TableColumn<OffreFidelite, Integer> coutColumn;
+    @FXML private TableColumn<OffreFidelite, Void> actionColumn;
+    @FXML private Label confirmationLabel;
+    @FXML private Button retourButton;
 
     private Menage menage;
 
@@ -45,11 +36,9 @@ public class UtiliserPointsController {
     }
 
     private void initialiserTable() {
-        // Liens entre colonnes et attributs
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         coutColumn.setCellValueFactory(new PropertyValueFactory<>("cout"));
 
-        // Bouton d'action par ligne
         actionColumn.setCellFactory(col -> new TableCell<>() {
             private final Button btn = new Button("Utiliser");
 
@@ -58,8 +47,7 @@ public class UtiliserPointsController {
                     OffreFidelite offre = getTableView().getItems().get(getIndex());
 
                     if (offre.appliquerOperation(menage)) {
-                        confirmationLabel.setText("Offre utilisée : " + offre.getDescription());
-                        pointsLabel.setText("Mes points : " + menage.getPointsFidelite());
+                        utiliserBon(offre);
                     } else {
                         confirmationLabel.setText("Points insuffisants pour : " + offre.getDescription());
                     }
@@ -73,12 +61,35 @@ public class UtiliserPointsController {
             }
         });
 
-        // Exemples d’offres (à remplacer par BDD plus tard)
         bonsTable.getItems().setAll(
             new OffreFidelite(1, "Réduction 5€ chez Partenaire A", 20, "Réduction"),
-            new OffreFidelite(2, "Bon d’achat 10€", 50, "Bon"),
-            new OffreFidelite(3, "Livraison gratuite", 30, "Service")
+            new OffreFidelite(2, "Bon d’achat 10€", 50, "Bon")
         );
+    }
+
+    private void utiliserBon(OffreFidelite offre) {
+        try {
+            // 1. Déduire les points (déjà fait dans appliquerOperation)
+            // 2. Mettre à jour les points dans la BDD
+            String sql = "UPDATE Menage SET pointsFidelite = ? WHERE Id_Menage = ?";
+            try (Connection conn = database.DatabaseManager.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, menage.getPointsFidelite());
+                stmt.setInt(2, menage.getId());
+                stmt.executeUpdate();
+            }
+
+            // 3. Enregistrer le bon acheté dans BonsPossedes
+            BonPossedeDAO dao = new BonPossedeDAO();
+            dao.ajouterOuIncrementerBon(menage, offre);
+
+            confirmationLabel.setText("Offre utilisée : " + offre.getDescription());
+            pointsLabel.setText("Mes points : " + menage.getPointsFidelite());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            confirmationLabel.setText("Erreur lors de l'enregistrement.");
+        }
     }
 
     @FXML
@@ -87,7 +98,6 @@ public class UtiliserPointsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/Accueil.fxml"));
             Parent root = loader.load();
 
-            // Repassage de l’objet Menage
             AccueilController controller = loader.getController();
             controller.setMenage(menage);
 

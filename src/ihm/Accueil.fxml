@@ -9,12 +9,12 @@
       <Label fx:id="nomLabel" layoutX="35.0" layoutY="21.0" prefHeight="46.0" prefWidth="211.0" text="Bonjour, [Nom]" />
       <Label fx:id="pointsLabel" layoutX="91.0" layoutY="79.0" prefHeight="28.0" prefWidth="125.0" text="Points fidélité : X" />
       
-      <Button fx:id="deposerButton" layoutX="118.0" layoutY="139.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Déposer des déchets" onAction="#ouvrirDepot"/>
-      <Button fx:id="historiqueButton" layoutX="308.0" layoutY="139.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Historique" onAction="#ouvrirHistorique"/>
-      <Button fx:id="offresButton" layoutX="118.0" layoutY="218.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Offres partenaires" />
-      <Button fx:id="utiliserPointsButton" layoutX="308.0" layoutY="218.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Utiliser mes points" />
+      <Button fx:id="deposerButton" layoutX="118.0" layoutY="139.0" mnemonicParsing="false" onAction="#ouvrirDepot" prefHeight="53.0" prefWidth="154.0" text="Déposer des déchets" />
+      <Button fx:id="historiqueButton" layoutX="308.0" layoutY="139.0" mnemonicParsing="false" onAction="#ouvrirHistorique" prefHeight="53.0" prefWidth="154.0" text="Historique" />
+      <Button fx:id="offresButton" layoutX="216.0" layoutY="298.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Offres partenaires" />
+      <Button fx:id="utiliserPointsButton" layoutX="118.0" layoutY="220.0" mnemonicParsing="false" onAction="#ouvrirUtiliserPoints" prefHeight="53.0" prefWidth="154.0" text="Utiliser mes points" />
       
-      <Button fx:id="retourButton" layoutX="213.0" layoutY="300.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="174.0" text="Retour accueil" onAction="#retourAccueil"/>
+      <Button fx:id="mesBonsButton" layoutX="308.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleMesBons" prefHeight="53.0" prefWidth="154.0" text="Mes Bons" />
       
       <Button fx:id="deconnexionButton" layoutX="435.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="37.0" prefWidth="125.0" text="Déconnexion" />
    </children>

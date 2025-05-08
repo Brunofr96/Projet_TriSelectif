@@ -81,7 +81,7 @@ public class AccueilController {
     }
 
     @FXML
-    public void retourAccueil() {
+    public void mesBons() {
         System.out.println("Retour accueil déclenché.");
         // Tu peux y mettre un vrai retour ou navigation plus tard
     }
@@ -107,5 +107,42 @@ public class AccueilController {
     }
 
 
-    // ➤ Les autres boutons peuvent être ajoutés de la même manière (historique, offres, etc.)
+    @FXML
+    private void ouvrirUtiliserPoints() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/UtiliserPoints.fxml"));
+            Parent root = loader.load();
+
+            controller.UtiliserPointsController controller = loader.getController();
+            controller.setMenage(utilisateurActuel); // si tu as besoin de transmettre le ménage
+
+            Stage stage = new Stage();
+            stage.setTitle("Utiliser mes points");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void handleMesBons() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/MesBons.fxml"));
+            Parent root = loader.load();
+
+            MesBonsController controller = loader.getController();
+            controller.setMenage(utilisateurActuel); // on passe l'objet connecté
+
+            Stage stage = (Stage) utiliserPointsButton.getScene().getWindow(); // ou un autre bouton dédié
+            stage.setScene(new Scene(root));
+            stage.setTitle("Mes bons");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
