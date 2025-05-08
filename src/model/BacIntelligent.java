@@ -112,6 +112,10 @@ public class BacIntelligent {
         return estPleine;
     }
 
+    public void setEstPleine(boolean estPleine) {
+        this.estPleine = estPleine;
+    }
+
     public TypePoubelle getType() {
         return typePoubelle;
     }
@@ -131,10 +135,17 @@ public class BacIntelligent {
     public Set<Integer> getCodesAccesAutorises() {
         return codesAccesAutorises;
     }
-    
-    @Override
-    public String toString() {
-        return typePoubelle.toString() + " - " + emplacement;
+
+    public int getIdTypePoubelle() {
+        return typePoubelle.getId();
     }
 
+    public String getTypePoubelleLabel() {
+        return typePoubelle.toString();
+    }
+
+    @Override
+    public String toString() {
+        return typePoubelle + " - " + emplacement;
+    }
 }
