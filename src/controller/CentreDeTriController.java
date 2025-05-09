@@ -95,4 +95,12 @@ public class CentreDeTriController {
         bacDAO.collecterTousLesBacs();
         rafraichirTable();
     }
+    
+    @FXML
+    private void handleFermer() {
+        Stage stage = (Stage) bacsTable.getScene().getWindow();
+        stage.close();
+    }
+
+
 }
