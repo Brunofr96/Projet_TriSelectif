@@ -5,6 +5,7 @@ import database.DatabaseManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OffreFideliteDAO {
@@ -25,5 +26,28 @@ public class OffreFideliteDAO {
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'enregistrement de l'offre : " + e.getMessage());
         }
+    }
+    
+    public OffreFidelite getOffreParId(int id) {
+        String sql = "SELECT * FROM OffreFidelite WHERE Id_OffreFidelite = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new OffreFidelite(
+                    rs.getInt("Id_OffreFidelite"),
+                    rs.getString("description"),
+                    rs.getInt("cout"),
+                    rs.getString("type")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
