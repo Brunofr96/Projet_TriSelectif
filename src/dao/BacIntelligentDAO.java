@@ -27,13 +27,12 @@ public class BacIntelligentDAO {
             stmt.setInt(6, bac.getIdTypePoubelle());
 
             stmt.executeUpdate();
-            System.out.println("✅ Bac intelligent enregistré avec succès !");
+            System.out.println("Bac intelligent enregistré avec succès !");
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de l'enregistrement du bac : " + e.getMessage());
+            System.out.println("Erreur lors de l'enregistrement du bac : " + e.getMessage());
         }
     }
 
-    // 🔁 Méthode 2 : Récupérer tous les bacs depuis la base
     public List<BacIntelligent> getAllBacs() {
         List<BacIntelligent> bacs = new ArrayList<>();
         String sql = "SELECT * FROM BacIntelligent";
@@ -48,24 +47,24 @@ public class BacIntelligentDAO {
                 double capacite = rs.getDouble("capaciteMax");
                 String emplacement = rs.getString("emplacement");
 
-                // ✅ Conversion propre de l'entier en TypePoubelle
                 TypePoubelle type = TypePoubelle.fromId(idTypePoubelle);
 
                 BacIntelligent bac = new BacIntelligent(id, type, capacite, emplacement);
                 bac.setIdCentreDeTri(rs.getInt("Id_CentreDeTri"));
+                bac.setPoidsActuel(rs.getDouble("poidsActuel"));
                 bac.setEstPleine(rs.getBoolean("estPleine"));
 
                 bacs.add(bac);
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la récupération des bacs : " + e.getMessage());
+            System.out.println("Erreur lors de la récupération des bacs : " + e.getMessage());
         }
 
         return bacs;
     }
 
-    // 🔁 Méthode 3 : Mettre à jour les propriétés d’un bac (ex : plein, capacité)
+    // Mettre à jour les propriétés d’un bac (ex : plein, capacité)
     public void mettreAJourEtat(BacIntelligent bac) {
         String sql = "UPDATE BacIntelligent SET estPleine = ?, capaciteMax = ? WHERE Id_BacIntelligent = ?";
 
@@ -77,13 +76,13 @@ public class BacIntelligentDAO {
             stmt.setInt(3, bac.getId());
 
             stmt.executeUpdate();
-            System.out.println("✅ État du bac mis à jour.");
+            System.out.println("État du bac mis à jour.");
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la mise à jour du bac : " + e.getMessage());
+            System.out.println("Erreur lors de la mise à jour du bac : " + e.getMessage());
         }
     }
 
-    // 🗑 Méthode 4 : Supprimer un bac
+    // Supprimer un bac
     public void supprimerBac(int id) {
         String sql = "DELETE FROM BacIntelligent WHERE Id_BacIntelligent = ?";
 
@@ -92,9 +91,24 @@ public class BacIntelligentDAO {
 
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("✅ Bac supprimé avec succès.");
+            System.out.println("Bac supprimé avec succès.");
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la suppression du bac : " + e.getMessage());
+            System.out.println("Erreur lors de la suppression du bac : " + e.getMessage());
         }
     }
+
+    public void collecterTousLesBacs() {
+        String sql = "UPDATE BacIntelligent SET estPleine = false, poidsActuel = 0";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.executeUpdate();
+            System.out.println("Tous les bacs ont été collectés (vidés + statut mis à jour) !");
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la collecte des bacs : " + e.getMessage());
+        }
+    }
+
+
 }

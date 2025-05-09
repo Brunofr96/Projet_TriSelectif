@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="controller.CentreDeTriController"
+            prefWidth="700" prefHeight="400">
+
+    <children>
+
+        <!-- TableView -->
+        <TableView fx:id="bacsTable" layoutX="20" layoutY="20" prefWidth="660" prefHeight="250">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colType" text="Type" prefWidth="150"/>
+                <TableColumn fx:id="colCapacite" text="Capacité Max" prefWidth="120"/>
+                <TableColumn fx:id="colPoids" text="Poids Actuel" prefWidth="120"/>
+                <TableColumn fx:id="colEmplacement" text="Emplacement" prefWidth="120"/>
+                <TableColumn fx:id="colPleine" text="Pleine ?" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Button -->
+        <Button fx:id="btnAjouter" text="➕ Ajouter Bac" layoutX="120" layoutY="300" prefWidth="150"/>
+        <Button fx:id="btnSupprimer" text="➖ Supprimer Bac" layoutX="290" layoutY="300" prefWidth="150"/>
+        <Button fx:id="btnCollecter" text=" Collecter Déchets" layoutX="460" layoutY="300" prefWidth="150"/>
+
+    </children>
+</AnchorPane>

@@ -40,7 +40,11 @@ public class OperationDepot {
         return quantite;
     }
 
-    public LocalDateTime getDateDepot() {
+    public void setQuantite(double quantite) {
+		this.quantite = quantite;
+	}
+
+	public LocalDateTime getDateDepot() {
         return dateDepot;
     }
 

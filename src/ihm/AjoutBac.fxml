@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="controller.AjoutBacController"
+            prefWidth="400" prefHeight="320">
+
+    <children>
+
+        <Label text="Ajouter un nouveau bac"
+               layoutX="90" layoutY="20"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <Label text="Type de bac :"
+               layoutX="50" layoutY="80"/>
+
+        <ComboBox fx:id="typeCombo"
+                  layoutX="180" layoutY="75"
+                  prefWidth="150"/>
+
+        <Label text="Capacité max (kg) :"
+               layoutX="50" layoutY="130"/>
+
+        <Spinner fx:id="capaciteSpinner"
+                 layoutX="180" layoutY="125"
+                 prefWidth="150"/>
+
+        <Label text="Emplacement :"
+               layoutX="50" layoutY="180"/>
+
+        <TextField fx:id="emplacementField"
+                   layoutX="180" layoutY="175"
+                   prefWidth="150"/>
+
+        <Button fx:id="btnAjouter"
+                text="Ajouter"
+                layoutX="90" layoutY="240"
+                prefWidth="100"/>
+
+        <Button fx:id="btnAnnuler"
+                text="Annuler"
+                layoutX="210" layoutY="240"
+                prefWidth="100"/>
+
+    </children>
+
+</AnchorPane>

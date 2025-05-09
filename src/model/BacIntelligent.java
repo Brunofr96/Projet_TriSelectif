@@ -11,6 +11,8 @@ public class BacIntelligent {
     private double capaciteMax;
     private String emplacement;
     private boolean estPleine;
+    private double poidsActuel;
+
 
     private TypePoubelle typePoubelle;           // En BDD → Id_TypePoubelle (stocké en texte ou FK)
     private int idCentreDeTri;                   // Clé étrangère (reliée au Centre)
@@ -66,6 +68,15 @@ public class BacIntelligent {
 
         return pointsTotal;
     }
+    
+    public double getPoidsActuel() {
+        return poidsActuel;
+    }
+
+    public void setPoidsActuel(double poidsActuel) {
+        this.poidsActuel = poidsActuel;
+    }
+
 
     private boolean dechetsConformes(Dechet d) {
         switch (typePoubelle) {
@@ -87,14 +98,14 @@ public class BacIntelligent {
     }
 
     public void notifierCentreDeTri() {
-        System.out.println("📢 Bac " + idBacIntelligent + " (" + typePoubelle + ") est plein à : " + emplacement);
+        System.out.println("Bac " + idBacIntelligent + " (" + typePoubelle + ") est plein à : " + emplacement);
     }
 
     public double getTotalPoids() {
         return dechets.stream().mapToDouble(Dechet::getPoids).sum();
     }
 
-    // ✅ Getters & Setters
+    // Getters & Setters
 
     public int getId() {
         return idBacIntelligent;

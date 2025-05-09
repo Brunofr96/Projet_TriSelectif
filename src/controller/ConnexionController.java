@@ -29,6 +29,9 @@ public class ConnexionController {
 
     @FXML
     private Button inscriptionButton;
+    
+    @FXML
+    private Button centreDeTriButton;
 
     @FXML
     private Label messageLabel;
@@ -114,5 +117,23 @@ public class ConnexionController {
             messageLabel.setText("Erreur lors du chargement de l'inscription.");
         }
     }
+    
+    @FXML
+    private void ouvrirCentreDeTri() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/CentreDeTri.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Centre de Tri - Gestion des Bacs");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            messageLabel.setText("Erreur lors de l'ouverture du Centre de Tri.");
+        }
+    }
+
 
 }

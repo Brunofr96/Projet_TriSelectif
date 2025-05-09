@@ -15,70 +15,106 @@ import model.TypeDechet;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.sql.Statement;
 
-
 public class OperationDepotDAO {
-	
-	private int insererDechet(Connection conn, Dechet dechet) throws SQLException {
-	    String sql = "INSERT INTO Dechet (poids, Id_TypeDechet) VALUES (?, ?)";
 
-	    try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-	        stmt.setDouble(1, dechet.getPoids());
-	        stmt.setInt(2, dechet.getType().ordinal() + 1); // Attention : TypeDechet (Enum) commence à 0
+    private int insererDechet(Connection conn, Dechet dechet) throws SQLException {
+        String sql = "INSERT INTO Dechet (poids, Id_TypeDechet) VALUES (?, ?)";
 
-	        stmt.executeUpdate();
+        try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setDouble(1, dechet.getPoids());
+            stmt.setInt(2, dechet.getType().ordinal() + 1);
 
-	        ResultSet rs = stmt.getGeneratedKeys();
-	        if (rs.next()) {
-	            return rs.getInt(1); // retourne l'ID auto-incrémenté du déchet
-	        } else {
-	            throw new SQLException("Erreur lors de la récupération de l'ID du déchet inséré.");
-	        }
-	    }
-	}
-	
-	private void ajouterPointsFidelite(Connection conn, int idMenage, int pointsGagnes) throws SQLException {
-	    String sql = "UPDATE Menage SET pointsFidelite = pointsFidelite + ? WHERE Id_Menage = ?";
-	    
-	    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-	        stmt.setInt(1, pointsGagnes);
-	        stmt.setInt(2, idMenage);
-	        stmt.executeUpdate();
-	    }
-	}
+            stmt.executeUpdate();
 
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException("Erreur lors de la récupération de l'ID du déchet inséré.");
+            }
+        }
+    }
 
+    private void ajouterPointsFidelite(Connection conn, int idMenage, int pointsGagnes) throws SQLException {
+        String sql = "UPDATE Menage SET pointsFidelite = pointsFidelite + ? WHERE Id_Menage = ?";
 
-	public void enregistrerDepot(OperationDepot depot) {
-	    String sql = "INSERT INTO OperationDepot (Id_Dechet, Id_Menage, Id_BacIntelligent, dateDepot, quantite, pointsGagnes) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, pointsGagnes);
+            stmt.setInt(2, idMenage);
+            stmt.executeUpdate();
+        }
+    }
 
-	    try (Connection conn = DatabaseManager.getConnection();
-	         PreparedStatement stmt = conn.prepareStatement(sql)) {
+    private double getPoidsTotal(Connection conn, int idBac) throws SQLException {
+        String sql = "SELECT poidsActuel FROM BacIntelligent WHERE Id_BacIntelligent = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idBac);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() ? rs.getDouble("poidsActuel") : 0;
+        }
+    }
 
-	        // 🟢 1. Insérer le déchet d'abord
-	        int idDechet = insererDechet(conn, depot.getDechets().get(0));
+    private boolean peutAccepterDepot(Connection conn, int idBac, double quantiteDepot) throws SQLException {
+        String sql = "SELECT capaciteMax, poidsActuel FROM BacIntelligent WHERE Id_BacIntelligent = ?";
 
-	        // 🟢 2. Ensuite insérer le dépôt avec l'ID du déchet
-	        stmt.setInt(1, idDechet);
-	        stmt.setInt(2, depot.getMenage().getId());
-	        stmt.setInt(3, depot.getBac().getId());
-	        stmt.setString(4, depot.getDateDepot().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-	        stmt.setDouble(5, depot.getQuantite());
-	        stmt.setInt(6, depot.getPointsGagnes());
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idBac);
+            ResultSet rs = stmt.executeQuery();
 
-	        stmt.executeUpdate();
-	        ajouterPointsFidelite(conn, depot.getMenage().getId(), depot.getPointsGagnes());
+            if (rs.next()) {
+                double capaciteMax = rs.getDouble("capaciteMax");
+                double poidsActuel = rs.getDouble("poidsActuel");
+                return (poidsActuel + quantiteDepot) <= capaciteMax;
+            } else {
+                throw new SQLException("Bac non trouvé.");
+            }
+        }
+    }
 
-	        System.out.println("Dépôt enregistré avec succès !");
-	        
-	    } catch (SQLException e) {
-	        System.out.println("Erreur lors de l'enregistrement du dépôt : " + e.getMessage());
-	    }
-	}
+    public boolean enregistrerDepot(OperationDepot depot) {
+        String sqlDepot = "INSERT INTO OperationDepot (Id_Dechet, Id_Menage, Id_BacIntelligent, dateDepot, quantite, pointsGagnes) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlMajBac = "UPDATE BacIntelligent SET poidsActuel = poidsActuel + ?, estPleine = ? WHERE Id_BacIntelligent = ?";
 
-    
+        try (Connection conn = DatabaseManager.getConnection()) {
+            if (!peutAccepterDepot(conn, depot.getBac().getId(), depot.getQuantite())) {
+                System.out.println("❌ Dépôt refusé : capacité maximale dépassée.");
+                return false;
+            }
+
+            int idDechet = insererDechet(conn, depot.getDechets().get(0));
+
+            try (PreparedStatement stmtDepot = conn.prepareStatement(sqlDepot)) {
+                stmtDepot.setInt(1, idDechet);
+                stmtDepot.setInt(2, depot.getMenage().getId());
+                stmtDepot.setInt(3, depot.getBac().getId());
+                stmtDepot.setString(4, depot.getDateDepot().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                stmtDepot.setDouble(5, depot.getQuantite());
+                stmtDepot.setInt(6, depot.getPointsGagnes());
+                stmtDepot.executeUpdate();
+            }
+
+            double poidsTotal = getPoidsTotal(conn, depot.getBac().getId()) + depot.getQuantite();
+            boolean estPleine = poidsTotal >= depot.getBac().getCapaciteMax();
+
+            try (PreparedStatement stmtMaj = conn.prepareStatement(sqlMajBac)) {
+                stmtMaj.setDouble(1, depot.getQuantite());
+                stmtMaj.setBoolean(2, estPleine);
+                stmtMaj.setInt(3, depot.getBac().getId());
+                stmtMaj.executeUpdate();
+            }
+
+            ajouterPointsFidelite(conn, depot.getMenage().getId(), depot.getPointsGagnes());
+
+            System.out.println("Dépôt enregistré avec succès !");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Erreur lors du dépôt : " + e.getMessage());
+            return false;
+        }
+    }
 
     public List<OperationDepot> getDepotsParMenage(Menage menage) {
         List<OperationDepot> depots = new ArrayList<>();
@@ -97,7 +133,7 @@ public class OperationDepotDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, menage.getId());
-            System.out.println("🔎 ID recherché : " + menage.getId());
+            System.out.println("ID recherché : " + menage.getId());
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -117,16 +153,14 @@ public class OperationDepotDAO {
                 listeDechets.add(dechet);
 
                 OperationDepot depot = new OperationDepot(
-                    0, // Pas d'ID unique utile ici
+                    0,
                     menage,
                     bac,
                     listeDechets,
                     rs.getInt("pointsGagnes")
                 );
-                
+
                 depot.setDateDepot(rs.getTimestamp("dateDepot").toLocalDateTime());
-
-
                 depots.add(depot);
             }
 
@@ -136,7 +170,5 @@ public class OperationDepotDAO {
 
         return depots;
     }
-
-
 
 }

@@ -2,11 +2,11 @@ package model;
 
 public class Dechet {
 
-    private int id; // 🔑 ID auto-généré par la BDD
+    private int id;
     private TypeDechet type;
     private double poids;
 
-    // ✅ Constructeur pour l'insertion
+    // Constructeur pour l'insertion
     public Dechet(TypeDechet type, double poids) {
         if (type == null) {
             throw new IllegalArgumentException("Le type de déchet ne peut pas être null.");
@@ -18,13 +18,13 @@ public class Dechet {
         this.poids = poids;
     }
 
-    // ✅ Constructeur utilisé lors de la lecture en base
+    // Constructeur utilisé lors de la lecture en base
     public Dechet(int id, TypeDechet type, double poids) {
         this(type, poids);
         this.id = id;
     }
 
-    // ✅ Getters et Setters
+    // Getters et Setters
 
     public int getId() {
         return id;

@@ -1,7 +1,6 @@
 package controller;
 
 import dao.BacIntelligentDAO;
-import dao.DechetDAO;
 import dao.OperationDepotDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,44 +49,44 @@ public class DepotController {
     }
 
     @FXML
-    public void validerDepot() {
-        BacIntelligent bac = comboBac.getValue();
-        TypeDechet type = comboType.getValue();
-        String poidsText = poidsField.getText();
-
-        if (bac == null || type == null || poidsText.isEmpty()) {
-            messageLabel.setText("Veuillez remplir tous les champs.");
-            return;
-        }
-
+    private void validerDepot() {
         try {
-            double poids = Double.parseDouble(poidsText);
-            Dechet dechet = new Dechet(type, poids);
+            BacIntelligent bacChoisi = comboBac.getValue();
+            TypeDechet type = comboType.getValue();
+            double poids = Double.parseDouble(poidsField.getText());
 
-            DechetDAO dechetDAO = new DechetDAO();
-            dechetDAO.enregistrerDechet(dechet);
+            if (bacChoisi == null || type == null || poids <= 0) {
+                throw new IllegalArgumentException("Champs invalides");
+            }
 
-            List<Dechet> liste = List.of(dechet); // ✅ Corrigé ici
+            Dechet d = new Dechet(type, poids);
 
-            OperationDepot depot = new OperationDepot(
-                (int)(Math.random() * 10000),
-                utilisateur,
-                bac,
-                liste,
-                (int)(poids * 10)
-            );
+            boolean typeConforme = bacChoisi.getType().accepte(d.getType());
+            int points = typeConforme ? bacChoisi.calculerPoints(d) : -5;
+            OperationDepot depot = new OperationDepot(0, utilisateur, bacChoisi, List.of(d), points);
+            depot.setQuantite(poids);
 
             OperationDepotDAO depotDAO = new OperationDepotDAO();
-            depotDAO.enregistrerDepot(depot);
+            boolean success = depotDAO.enregistrerDepot(depot);
 
-            utilisateur.ajouterPoints((int)(poids * 10));
-            messageLabel.setText("✅ Dépôt enregistré (" + (int)(poids * 10) + " pts gagnés)");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            if (success) {
+                alert.setTitle("Succès");
+                alert.setContentText("Dépôt effectué ! " + (points < 0 ? "(Type incorrect - points retirés)" : ""));
+            } else {
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setTitle("Échec");
+                alert.setContentText("Dépôt refusé (bac plein ou erreur interne).");
+            }
+            alert.showAndWait();
 
-        } catch (NumberFormatException e) {
-            messageLabel.setText("❌ Le poids doit être un nombre.");
         } catch (Exception e) {
-            e.printStackTrace();
-            messageLabel.setText("❌ Erreur lors de l'enregistrement.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("Assure-toi d'avoir rempli tous les champs correctement.");
+            alert.showAndWait();
         }
     }
 
