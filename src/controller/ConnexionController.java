@@ -1,47 +1,32 @@
 package controller;
 
 import javafx.fxml.FXML;
-
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Menage;
-import javafx.scene.control.PasswordField;
-
 
 import java.io.IOException;
 import java.sql.*;
 
 public class ConnexionController {
-	
-	@FXML
-	private TextField mailAcess;
 
-	@FXML
-	private PasswordField mdpAcess;
+    @FXML private TextField mailAcess;
+    @FXML private PasswordField mdpAcess;
+    @FXML private Button connexionButton;
+    @FXML private Button inscriptionButton;
+    @FXML private Button centreDeTriButton;
+    @FXML private Label messageLabel;
 
-    @FXML
-    private Button connexionButton;
-
-    @FXML
-    private Button inscriptionButton;
-    
-    @FXML
-    private Button centreDeTriButton;
-
-    @FXML
-    private Label messageLabel;
-
+    // ➤ Connexion standard d’un ménage
     @FXML
     private void handleConnexion() {
         String mail = mailAcess.getText().trim();
         String motDePasse = mdpAcess.getText().trim();
 
-        Menage menage = getMenageDepuisMailEtMdp(mail, motDePasse); // 
+        Menage menage = getMenageDepuisMailEtMdp(mail, motDePasse);
 
         if (menage != null) {
             try {
@@ -65,6 +50,7 @@ public class ConnexionController {
         }
     }
 
+    // ➤ Requête de connexion en base
     private Menage getMenageDepuisMailEtMdp(String mail, String motDePasse) {
         String url = "jdbc:mysql://switchyard.proxy.rlwy.net:31810/railway";
         String user = "root";
@@ -81,7 +67,7 @@ public class ConnexionController {
 
             if (rs.next()) {
                 return new Menage(
-                	rs.getInt("Id_Menage"),
+                    rs.getInt("Id_Menage"),
                     rs.getString("nom"),
                     rs.getString("adresse"),
                     rs.getString("adresseMail"),
@@ -100,7 +86,7 @@ public class ConnexionController {
         return null;
     }
 
-    
+    // ➤ Bouton Inscription
     @FXML
     private void handleInscription() {
         try {
@@ -117,15 +103,16 @@ public class ConnexionController {
             messageLabel.setText("Erreur lors du chargement de l'inscription.");
         }
     }
-    
+
+    // ➤ Accès Centre de Tri avec menu intégré
     @FXML
     private void ouvrirCentreDeTri() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/CentreDeTri.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/CentreTriMain.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Centre de Tri - Gestion des Bacs");
+            stage.setTitle("Centre de Tri - Menu");
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -134,6 +121,4 @@ public class ConnexionController {
             messageLabel.setText("Erreur lors de l'ouverture du Centre de Tri.");
         }
     }
-
-
 }
