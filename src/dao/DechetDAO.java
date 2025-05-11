@@ -93,10 +93,10 @@ public class DechetDAO {
 
             stmt.setInt(1, id);
             int rows = stmt.executeUpdate();
-            System.out.println("✅ Déchet supprimé : " + rows + " ligne(s)");
+            System.out.println(" Déchet supprimé : " + rows + " ligne(s)");
 
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la suppression du déchet : " + e.getMessage());
+            System.out.println("Erreur lors de la suppression du déchet : " + e.getMessage());
         }
     }
 }
