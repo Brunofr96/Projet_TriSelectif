@@ -26,7 +26,7 @@ public class DechetDAO {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
                     dechet.setId(rs.getInt(1));
-                    System.out.println("✅ Déchet enregistré avec ID : " + dechet.getId());
+                    System.out.println(" Déchet enregistré avec ID : " + dechet.getId());
                 }
             }
 
