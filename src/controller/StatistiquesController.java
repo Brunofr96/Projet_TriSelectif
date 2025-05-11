@@ -48,7 +48,7 @@ public class StatistiquesController {
             delay.play();
 
         } catch (Exception e) {
-            System.out.println("❌ Erreur chargement des stats poubelles : " + e.getMessage());
+            System.out.println(" Erreur chargement des stats poubelles : " + e.getMessage());
             e.printStackTrace();
         }
     }
