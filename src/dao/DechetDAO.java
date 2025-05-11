@@ -78,7 +78,7 @@ public class DechetDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la récupération des déchets par type : " + e.getMessage());
+            System.out.println(" Erreur lors de la récupération des déchets par type : " + e.getMessage());
         }
 
         return dechets;
