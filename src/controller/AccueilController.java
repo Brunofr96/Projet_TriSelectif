@@ -70,14 +70,14 @@ public class AccueilController {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Accès refusé");
                     alert.setHeaderText(null);
-                    alert.setContentText("❌ Code incorrect.");
+                    alert.setContentText("Code incorrect.");
                     alert.showAndWait();
                 }
             } catch (NumberFormatException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setHeaderText(null);
-                alert.setContentText("❌ Veuillez entrer un code valide.");
+                alert.setContentText(" Veuillez entrer un code valide.");
                 alert.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
