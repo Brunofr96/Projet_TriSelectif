@@ -48,7 +48,7 @@ public class StatistiquesDechetController {
             delay.play();
 
         } catch (Exception e) {
-            System.out.println("❌ Erreur lors du chargement des statistiques de déchets : " + e.getMessage());
+            System.out.println(" Erreur lors du chargement des statistiques de déchets : " + e.getMessage());
             e.printStackTrace();
         }
     }
