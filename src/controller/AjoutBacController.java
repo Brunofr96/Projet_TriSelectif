@@ -1,5 +1,4 @@
 package controller;
-
 import dao.BacIntelligentDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
