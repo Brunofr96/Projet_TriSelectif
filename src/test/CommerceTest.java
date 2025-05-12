@@ -5,48 +5,46 @@ import model.*;
 public class CommerceTest {
 
     public static void runTest() {
-        System.out.println(" Test 1 : Réduction appliquée");
+        System.out.println("=== TEST OFFRES DE RÉDUCTION ===");
+
+        System.out.println("\n▶ Test 1 : Réduction appliquée (points suffisants)");
         testReductionSuffisante();
 
-        System.out.println("\n Test 2 : Réduction refusée (pas assez de points)");
+        System.out.println("\n▶ Test 2 : Réduction refusée (points insuffisants)");
         testReductionInsuffisante();
     }
 
-    public static void testReductionSuffisante() {
-        // Création d'un ménage avec assez de points
+    private static void testReductionSuffisante() {
         Menage menage = new Menage("Famille Points", "10 rue Fidèle", "fidel@mail.com", "pass", 1234, null);
+        menage.setPointsFidelite(50); // Donne 50 points
 
-        // Création d'une offre fidélité
-        OffreFidelite offre = new OffreFidelite(1, "Réduction 5%", 20, "alimentaire");
-
-        // Création du commerce
+        OffreFidelite offre = new OffreFidelite(1, "Réduction 5%", 20, "alimentaire", 1);
         Commerce commerce = new Commerce(1, "Super U");
 
-        // Tentative d'appliquer la réduction
-        boolean reductionAppliquee = commerce.offrirReduction(menage, offre);
+        boolean resultat = commerce.offrirReduction(menage, offre);
 
-        System.out.println("Réduction appliquée ? " + reductionAppliquee);
+        System.out.println("Réduction appliquée ? " + resultat);
         System.out.println("Points restants : " + menage.getPointsFidelite());
 
-        // Résultat attendu : réduction appliquée et points diminués
+        // ✅ Assertion attendue
+        assert resultat : "La réduction aurait dû être appliquée";
+        assert menage.getPointsFidelite() == 30 : "Il devrait rester 30 points";
     }
 
-    public static void testReductionInsuffisante() {
-        // Création d'un ménage avec trop peu de points
+    private static void testReductionInsuffisante() {
         Menage menage = new Menage("Famille Fauchée", "20 rue Pauvre", "pauvre@mail.com", "pass", 5678, null);
+        menage.setPointsFidelite(10); // Donne 10 points
 
-        // Création d'une offre fidélité plus chère que les points
-        OffreFidelite offre = new OffreFidelite(2, "Réduction 10%", 30, "électroménager");
-
-        // Création du commerce
+        OffreFidelite offre = new OffreFidelite(2, "Réduction 10%", 30, "électroménager", 2);
         Commerce commerce = new Commerce(2, "Carrefour");
 
-        // Tentative d'appliquer la réduction
-        boolean reductionAppliquee = commerce.offrirReduction(menage, offre);
+        boolean resultat = commerce.offrirReduction(menage, offre);
 
-        System.out.println("Réduction appliquée ? " + reductionAppliquee);
+        System.out.println("Réduction appliquée ? " + resultat);
         System.out.println("Points restants : " + menage.getPointsFidelite());
 
-        // Résultat attendu : réduction NON appliquée et points inchangés
+        // ❌ Pas assez de points donc pas de réduction
+        assert !resultat : "La réduction n'aurait pas dû être appliquée";
+        assert menage.getPointsFidelite() == 10 : "Les points ne doivent pas changer";
     }
 }

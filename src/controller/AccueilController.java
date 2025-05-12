@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Menage;
+import javafx.scene.Node;
+
 
 import java.io.IOException;
 
@@ -17,7 +19,6 @@ public class AccueilController {
     @FXML private Button deposerButton;
     @FXML private Button historiqueButton;
     @FXML private Button offresButton;
-    @FXML private Button utiliserPointsButton;
     @FXML private Button ecoloButton;
     @FXML private Button deconnexionButton;
 
@@ -129,21 +130,43 @@ public class AccueilController {
     }
     
     @FXML
-    private void handleMesBons() {
+    private void handleMesBons(javafx.event.ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/MesBons.fxml"));
             Parent root = loader.load();
 
             MesBonsController controller = loader.getController();
-            controller.setMenage(utilisateurActuel); // on passe l'objet connecté
+            controller.setMenage(utilisateurActuel); // on passe bien l'objet connecté
 
-            Stage stage = (Stage) utiliserPointsButton.getScene().getWindow(); // ou un autre bouton dédié
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // ✅ plus de dépendance à un bouton
             stage.setScene(new Scene(root));
-            stage.setTitle("Mes bons");
+            stage.setTitle("Mes Bons");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    
+    @FXML
+    private void handleOffresPartenaires() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/OffresPartenaires.fxml"));
+            Parent root = loader.load();
+
+            OffresPartenairesController controller = loader.getController();
+            controller.setMenage(utilisateurActuel);  // Passe l’utilisateur connecté
+
+            Stage stage = (Stage) offresButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Offres Partenaires");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

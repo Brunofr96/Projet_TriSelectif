@@ -4,15 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
    <children>
       <Label fx:id="nomLabel" layoutX="35.0" layoutY="21.0" prefHeight="46.0" prefWidth="211.0" text="Bonjour, [Nom]" />
       <Label fx:id="pointsLabel" layoutX="91.0" layoutY="79.0" prefHeight="28.0" prefWidth="125.0" text="Points fidélité : X" />
       
       <Button fx:id="deposerButton" layoutX="118.0" layoutY="139.0" mnemonicParsing="false" onAction="#ouvrirDepot" prefHeight="53.0" prefWidth="154.0" text="Déposer des déchets" />
       <Button fx:id="historiqueButton" layoutX="308.0" layoutY="139.0" mnemonicParsing="false" onAction="#ouvrirHistorique" prefHeight="53.0" prefWidth="154.0" text="Historique" />
-      <Button fx:id="offresButton" layoutX="216.0" layoutY="298.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Offres partenaires" />
-      <Button fx:id="utiliserPointsButton" layoutX="118.0" layoutY="220.0" mnemonicParsing="false" onAction="#ouvrirUtiliserPoints" prefHeight="53.0" prefWidth="154.0" text="Utiliser mes points" />
+      <Button fx:id="offresButton" layoutX="118.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOffresPartenaires" prefHeight="53.0" prefWidth="154.0" text="Offres partenaires" />
       
       <Button fx:id="mesBonsButton" layoutX="308.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleMesBons" prefHeight="53.0" prefWidth="154.0" text="Mes Bons" />
       

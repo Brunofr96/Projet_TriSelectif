@@ -10,14 +10,17 @@ public class OffreFidelite {
     private String description;
     private int cout;
     private String type;
+    private int idCommerce;
 
-    public OffreFidelite(int id, String description, int cout, String type) {
+    public OffreFidelite(int id, String description, int cout, String type, int idCommerce) {
         this.id = id;
         this.description = description;
         this.cout = cout;
         this.type = type;
+        this.idCommerce = idCommerce;
     }
-
+    
+    
     public boolean verifPointAchat(Menage menage) {
         return menage.getPointsFidelite() >= cout;
     }
@@ -50,5 +53,9 @@ public class OffreFidelite {
     @Override
     public String toString() {
         return "Offre #" + id + " : " + description + " (" + cout + " pts)";
+    }
+    
+    public int getIdCommerce() {
+        return idCommerce;
     }
 }

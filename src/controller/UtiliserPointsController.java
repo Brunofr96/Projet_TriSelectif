@@ -1,6 +1,7 @@
 package controller;
 
 import dao.BonPossedeDAO;
+import dao.OffreFideliteDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -61,11 +62,12 @@ public class UtiliserPointsController {
             }
         });
 
-        bonsTable.getItems().setAll(
-            new OffreFidelite(1, "Réduction 5€ chez Partenaire A", 20, "Réduction"),
-            new OffreFidelite(2, "Bon d’achat 10€", 50, "Bon")
-        );
+        // Remplace le contenu manuel par celui venant de la base
+        OffreFideliteDAO dao = new OffreFideliteDAO();
+        List<OffreFidelite> offres = dao.getAllOffres();
+        bonsTable.getItems().setAll(offres);
     }
+
 
     private void utiliserBon(OffreFidelite offre) {
         try {

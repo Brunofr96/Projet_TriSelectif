@@ -1,0 +1,21 @@
+.points-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a7faa;
+}
+
+.button {
+    -fx-background-color: #2a7faa;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #1e5d80;
+}
+
+.table-view {
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+}

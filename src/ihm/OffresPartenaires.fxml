@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15"
+      xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/21"
+      stylesheets="@css/offres.css"
+      fx:controller="controller.OffresPartenairesController"
+      prefWidth="700.0" prefHeight="450.0">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Mes points -->
+    <Label fx:id="pointsLabel" text="Mes points : 0" styleClass="points-label"/>
+
+    <!-- Titre -->
+    <Label text="Offres partenaires disponibles" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <!-- Filtrage par catégorie -->
+    <HBox spacing="10">
+        <Label text="Filtrer par catégorie :" />
+        <ComboBox fx:id="categorieFilter" prefWidth="200" onAction="#filtrerParCategorie" />
+    </HBox>
+    
+
+    <!-- Tableau des offres -->
+    <TableView fx:id="tableContrats" prefWidth="660.0" prefHeight="300.0">
+        <columns>
+            <TableColumn fx:id="colDescription" text="Description" prefWidth="250.0"/>
+            <TableColumn fx:id="colPoints" text="Points nécessaires" prefWidth="130.0"/>
+            <TableColumn fx:id="colCategories" text="Catégories" prefWidth="180.0"/>
+            <TableColumn fx:id="colAction" text="Action" prefWidth="160.0"/>
+        </columns>
+    </TableView>
+
+    <!-- Bouton retour -->
+    <Button fx:id="retourButton" text="Retour à l'accueil" onAction="#handleRetour" prefWidth="150"/>
+
+</VBox>

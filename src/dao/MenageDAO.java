@@ -103,4 +103,20 @@ public class MenageDAO {
             System.out.println("❌ Erreur lors de la suppression : " + e.getMessage());
         }
     }
+    
+ // MenageDAO.java
+    public void mettreAJourPoints(Menage menage) {
+        String sql = "UPDATE Menage SET pointsFidelite = ? WHERE Id_Menage = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, menage.getPointsFidelite());
+            stmt.setInt(2, menage.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
