@@ -8,8 +8,8 @@ public class OffreFideliteTest {
 
         Menage m = new Menage("Famille Points", "10 rue Fidèle", "fidel@mail.com", "pass", 1234, null);
 
-        OffreFidelite offre1 = new OffreFidelite(1, "Réduction 5%", 15, "alimentaire");
-        OffreFidelite offre2 = new OffreFidelite(2, "Réduction 10%", 30, "hygiène");
+        OffreFidelite offre1 = new OffreFidelite(1, "Réduction 5%", 15, "alimentaire", 1);
+        OffreFidelite offre2 = new OffreFidelite(2, "Réduction 10%", 30, "hygiène", 2);
 
         System.out.println("\n Test 1 : Points suffisants");
         boolean result1 = m.convertirPointsEnReduction(offre1);

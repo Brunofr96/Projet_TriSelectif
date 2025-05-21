@@ -16,6 +16,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Statement;
+import java.util.Map;
+import java.util.HashMap;
+
 
 public class OperationDepotDAO {
 
@@ -170,5 +173,70 @@ public class OperationDepotDAO {
 
         return depots;
     }
+    
+
+
+ // 📊 Statistiques : total des déchets groupés par type de poubelle
+    public Map<TypePoubelle, Double> getStatistiquesParTypePoubelle() {
+        Map<TypePoubelle, Double> stats = new HashMap<>();
+
+        String sql = "SELECT tp.libelle AS typePoubelle, SUM(od.quantite) AS total " +
+                     "FROM OperationDepot od " +
+                     "JOIN BacIntelligent b ON od.Id_BacIntelligent = b.Id_BacIntelligent " +
+                     "JOIN TypePoubelle tp ON b.Id_TypePoubelle = tp.Id_TypePoubelle " +
+                     "GROUP BY tp.libelle";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String typeLibelle = rs.getString("typePoubelle").toUpperCase();
+                double total = rs.getDouble("total");
+
+                try {
+                    TypePoubelle type = TypePoubelle.valueOf(typeLibelle);
+                    stats.put(type, total);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("⚠️ Type de poubelle inconnu ignoré : " + typeLibelle);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("❌ Erreur lors de la récupération des stats : " + e.getMessage());
+        }
+
+        return stats;
+    }
+    
+    
+    public Map<TypeDechet, Double> getStatistiquesParTypeDechet() {
+        Map<TypeDechet, Double> stats = new HashMap<>();
+
+        String sql = "SELECT td.libelle AS typeDechet, SUM(od.quantite) AS total " +
+                     "FROM OperationDepot od " +
+                     "JOIN Dechet d ON od.Id_Dechet = d.Id_Dechet " +
+                     "JOIN TypeDechet td ON d.Id_TypeDechet = td.Id_TypeDechet " +
+                     "GROUP BY td.libelle";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String typeLibelle = rs.getString("typeDechet").toUpperCase();
+                double total = rs.getDouble("total");
+
+                stats.put(TypeDechet.valueOf(typeLibelle), total);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("❌ Erreur récupération stats par type de déchet : " + e.getMessage());
+        }
+
+        return stats;
+    }
+
+
 
 }

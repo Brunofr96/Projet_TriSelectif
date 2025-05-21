@@ -26,7 +26,7 @@ public class DechetDAO {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
                     dechet.setId(rs.getInt(1));
-                    System.out.println("✅ Déchet enregistré avec ID : " + dechet.getId());
+                    System.out.println(" Déchet enregistré avec ID : " + dechet.getId());
                 }
             }
 
@@ -54,7 +54,7 @@ public class DechetDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la récupération des déchets : " + e.getMessage());
+            System.out.println(" Erreur lors de la récupération des déchets : " + e.getMessage());
         }
 
         return dechets;
@@ -78,7 +78,7 @@ public class DechetDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la récupération des déchets par type : " + e.getMessage());
+            System.out.println(" Erreur lors de la récupération des déchets par type : " + e.getMessage());
         }
 
         return dechets;
@@ -93,10 +93,10 @@ public class DechetDAO {
 
             stmt.setInt(1, id);
             int rows = stmt.executeUpdate();
-            System.out.println("✅ Déchet supprimé : " + rows + " ligne(s)");
+            System.out.println(" Déchet supprimé : " + rows + " ligne(s)");
 
         } catch (SQLException e) {
-            System.out.println("❌ Erreur lors de la suppression du déchet : " + e.getMessage());
+            System.out.println("Erreur lors de la suppression du déchet : " + e.getMessage());
         }
     }
 }

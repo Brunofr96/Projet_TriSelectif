@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.BacIntelligent;
 import model.TypePoubelle;
-
 import java.io.IOException;
 import java.util.List;
 
