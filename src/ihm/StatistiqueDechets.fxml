@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.XYChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.StatistiquesDechetController"
-            prefWidth="600" prefHeight="400">
+<AnchorPane prefHeight="449.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatistiquesDechetController">
 
     <children>
-        <Label layoutX="170" layoutY="20" text="Statistiques par type de déchet"
-               style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label layoutX="189.0" layoutY="20.0" prefHeight="25.0" prefWidth="286.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Statistiques par type de déchet" />
 
-        <BarChart fx:id="barChartDechets" layoutX="50" layoutY="60" prefHeight="300" prefWidth="500">
+        <BarChart fx:id="barChartDechets" layoutX="50" layoutY="60" prefHeight="339.0" prefWidth="545.0">
             <xAxis>
-                <CategoryAxis label="Type de déchet"/>
+                <CategoryAxis label="Type de déchet" />
             </xAxis>
             <yAxis>
-                <NumberAxis label="Total (kg)"/>
+                <NumberAxis label="Total (kg)" />
             </yAxis>
         </BarChart>
     </children>

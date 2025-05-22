@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.DepotController" prefWidth="400" prefHeight="300">
-    <VBox alignment="CENTER" spacing="15.0" layoutX="50" layoutY="30" prefWidth="300" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
-        <Label text="Dépôt de déchets" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-
-        <ComboBox fx:id="comboBac" promptText="Sélectionner un bac" prefWidth="200"/>
-        <ComboBox fx:id="comboType" promptText="Type de déchet" prefWidth="200"/>
-        <TextField fx:id="poidsField" promptText="Poids (kg)" prefWidth="200"/>
-        <Button text="Valider dépôt" onAction="#validerDepot" prefWidth="200"/>
-        <Button fx:id="retourButton" text="Retour à l'accueil" onAction="#retourAccueil" prefWidth="200"/>
+<AnchorPane prefHeight="485.0" prefWidth="659.0" stylesheets="@/resources/css/connexion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DepotController">
+    <VBox alignment="CENTER" layoutX="48.0" layoutY="76.0" prefHeight="292.0" prefWidth="433.0" spacing="15.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0">
         
 
-        <Label fx:id="messageLabel" textFill="green"/>
+        <Label fx:id="messageLabel" textFill="green" />
+
+        <ComboBox fx:id="comboBac" prefHeight="25.0" prefWidth="564.0" promptText="Sélectionner un bac" />
+        <ComboBox fx:id="comboType" prefHeight="25.0" prefWidth="562.0" promptText="Type de déchet" />
+        <TextField fx:id="poidsField" prefHeight="29.0" prefWidth="409.0" promptText="Poids (kg)" />
+        <Button onAction="#validerDepot" prefWidth="200" style="-fx-background-color: #2E8B57;" text="Valider dépôt" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button fx:id="retourButton" onAction="#retourAccueil" prefWidth="200" text="Retour à l'accueil" />
     </VBox>
+     <Label layoutX="264.0" layoutY="41.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Dépôt de déchets" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="16.0" /> 
+      </font>
+   </Label>
 </AnchorPane>

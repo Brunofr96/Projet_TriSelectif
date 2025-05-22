@@ -5,21 +5,25 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/resources/css/connexion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnexionController">
+<AnchorPane prefHeight="529.0" prefWidth="718.0" stylesheets="@/resources/css/connexion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConnexionController">
    <children>
-      <Text fill="WHITE" layoutX="27.0" layoutY="27.0" stroke="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion Ménage" wrappingWidth="545.0" />
+      <Text fill="WHITE" layoutX="27.0" layoutY="27.0" stroke="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion Ménage" wrappingWidth="545.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font></Text>
 
-      <TextField fx:id="mailAcess" layoutX="227.0" layoutY="97.0" promptText="Mail" />
+      <TextField fx:id="mailAcess" layoutX="227.0" layoutY="97.0" prefHeight="25.0" prefWidth="267.0" promptText="Mail" />
 
-      <PasswordField fx:id="mdpAcess" layoutX="225.0" layoutY="139.0" promptText="Mot de passe" />
+      <PasswordField fx:id="mdpAcess" layoutX="225.0" layoutY="139.0" prefHeight="25.0" prefWidth="267.0" promptText="Mot de passe" />
 
-      <Button fx:id="connexionButton" layoutX="257.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleConnexion" text="Se Connecter" />
+      <Button fx:id="connexionButton" layoutX="290.0" layoutY="188.0" mnemonicParsing="false" onAction="#handleConnexion" prefHeight="39.0" prefWidth="133.0" text="Se Connecter" />
 
-      <Button fx:id="inscriptionButton" layoutX="226.0" layoutY="273.0" mnemonicParsing="false" onAction="#handleInscription" prefHeight="25.0" prefWidth="149.0" text="Inscription" />
+      <Button fx:id="inscriptionButton" layoutX="226.0" layoutY="273.0" mnemonicParsing="false" onAction="#handleInscription" prefHeight="25.0" prefWidth="267.0" text="Inscription" />
       
-      <Button fx:id="centreDeTriButton" layoutX="218.0" layoutY="342.0" onAction="#ouvrirCentreDeTri" prefHeight="26.0" prefWidth="167.0" style="-fx-font-weight: bold;" text="Accès Centre de Tri" />
+      <Button fx:id="centreDeTriButton" layoutX="218.0" layoutY="342.0" onAction="#ouvrirCentreDeTri" prefHeight="26.0" prefWidth="276.0" style="-fx-font-weight: bold;" text="Accès Centre de Tri" />
       
 
       <Label fx:id="messageLabel" layoutX="216.0" layoutY="314.0" prefHeight="17.0" prefWidth="167.0" text="Message" textFill="WHITE" />

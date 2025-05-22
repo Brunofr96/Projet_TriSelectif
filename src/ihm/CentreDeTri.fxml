@@ -4,29 +4,33 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400" prefWidth="700" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CentreDeTriController">
+<AnchorPane prefHeight="527.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CentreDeTriController">
 
     <children>
 
         <!-- TableView -->
-        <TableView fx:id="bacsTable" layoutX="20" layoutY="20" prefHeight="250" prefWidth="660">
+        <TableView fx:id="bacsTable" layoutX="78.0" layoutY="88.0" prefHeight="250" prefWidth="656.0">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="50" text="ID" />
-                <TableColumn fx:id="colType" prefWidth="150" text="Type" />
-                <TableColumn fx:id="colCapacite" prefWidth="120" text="Capacité Max" />
-                <TableColumn fx:id="colPoids" prefWidth="120" text="Poids Actuel" />
+                <TableColumn fx:id="colType" prefWidth="107.0" text="Type" />
+                <TableColumn fx:id="colCapacite" prefWidth="132.0" text="Capacité Max" />
+                <TableColumn fx:id="colPoids" prefWidth="151.0" text="Poids Actuel" />
                 <TableColumn fx:id="colEmplacement" prefWidth="120" text="Emplacement" />
                 <TableColumn fx:id="colPleine" prefWidth="100" text="Pleine ?" />
             </columns>
         </TableView>
 
         <!-- Button -->
-        <Button fx:id="btnAjouter" layoutX="92.0" layoutY="300.0" prefWidth="150" text="➕ Ajouter Bac" />
-        <Button fx:id="btnSupprimer" layoutX="275.0" layoutY="300.0" prefWidth="150" text="➖ Supprimer Bac" />
-        <Button fx:id="btnCollecter" layoutX="460" layoutY="300" prefWidth="150" text=" Collecter Déchets" />
+        <Button fx:id="btnAjouter" layoutX="150.0" layoutY="368.0" prefHeight="35.0" prefWidth="150" style="-fx-background-color: green;" text="➕ Ajouter Bac" textFill="WHITE" />
+        <Button fx:id="btnSupprimer" layoutX="333.0" layoutY="368.0" prefHeight="35.0" prefWidth="150" style="-fx-background-color: red;" text="➖ Supprimer Bac" textFill="WHITE" />
+        <Button fx:id="btnCollecter" layoutX="518.0" layoutY="368.0" prefHeight="35.0" prefWidth="150" style="-fx-background-color: yellow;" text=" Collecter Déchets">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
         
-       	<Button layoutX="300.0" layoutY="360.0" onAction="#handleFermer" style="-fx-font-weight: bold;" text="Fermer la page" />
+       	<Button layoutX="358.0" layoutY="428.0" onAction="#handleFermer" prefHeight="35.0" prefWidth="101.0" style="-fx-font-weight: bold;" text="Fermer la page" />
        	
 
     </children>

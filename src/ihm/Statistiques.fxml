@@ -3,20 +3,19 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.XYChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatistiquesController" prefHeight="400" prefWidth="600">
+<AnchorPane prefHeight="476.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatistiquesController">
     <children>
-        <Label layoutX="200" layoutY="20" text="Statistiques par type de poubelle" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <Label layoutX="200" layoutY="20" prefHeight="25.0" prefWidth="367.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Statistiques par type de poubelle" />
 
-        <BarChart fx:id="barChart" layoutX="50" layoutY="60" prefHeight="300" prefWidth="500">
+        <BarChart fx:id="barChart" layoutX="50" layoutY="60" prefHeight="342.0" prefWidth="567.0">
             <xAxis>
-                <CategoryAxis label="Type de poubelle"/>
+                <CategoryAxis label="Type de poubelle" />
             </xAxis>
             <yAxis>
-                <NumberAxis label="Total des déchets (kg)"/>
+                <NumberAxis label="Total des déchets (kg)" />
             </yAxis>
         </BarChart>
     </children>

@@ -3,18 +3,25 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="842.0" stylesheets="@/resources/css/connexion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
    <children>
-      <Label fx:id="nomLabel" layoutX="35.0" layoutY="21.0" prefHeight="46.0" prefWidth="211.0" text="Bonjour, [Nom]" />
-      <Label fx:id="pointsLabel" layoutX="91.0" layoutY="79.0" prefHeight="28.0" prefWidth="125.0" text="Points fidélité : X" />
+      <Label fx:id="nomLabel" layoutX="25.0" layoutY="48.0" prefHeight="46.0" prefWidth="211.0" text="Bonjour, [Nom]" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font></Label>
+      <Label fx:id="pointsLabel" layoutX="81.0" layoutY="106.0" prefHeight="28.0" prefWidth="133.0" text="Points fidélité : X" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font></Label>
       
-      <Button fx:id="deposerButton" layoutX="118.0" layoutY="139.0" mnemonicParsing="false" onAction="#ouvrirDepot" prefHeight="53.0" prefWidth="154.0" text="Déposer des déchets" />
-      <Button fx:id="historiqueButton" layoutX="308.0" layoutY="139.0" mnemonicParsing="false" onAction="#ouvrirHistorique" prefHeight="53.0" prefWidth="154.0" text="Historique" />
-      <Button fx:id="offresButton" layoutX="118.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleOffresPartenaires" prefHeight="53.0" prefWidth="154.0" text="Offres partenaires" />
+      <Button fx:id="deposerButton" layoutX="199.0" layoutY="225.0" mnemonicParsing="false" onAction="#ouvrirDepot" prefHeight="53.0" prefWidth="197.0" text="Déposer des déchets" />
+      <Button fx:id="historiqueButton" layoutX="432.0" layoutY="225.0" mnemonicParsing="false" onAction="#ouvrirHistorique" prefHeight="53.0" prefWidth="197.0" text="Historique" />
+      <Button fx:id="offresButton" layoutX="199.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleOffresPartenaires" prefHeight="53.0" prefWidth="197.0" text="Offres partenaires" />
       
-      <Button fx:id="mesBonsButton" layoutX="308.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleMesBons" prefHeight="53.0" prefWidth="154.0" text="Mes Bons" />
+      <Button fx:id="mesBonsButton" layoutX="432.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleMesBons" prefHeight="53.0" prefWidth="197.0" text="Mes Bons" />
       
-      <Button fx:id="deconnexionButton" layoutX="435.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="37.0" prefWidth="125.0" text="Déconnexion" />
+      <Button fx:id="deconnexionButton" layoutX="671.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleDeconnexion" prefHeight="37.0" prefWidth="125.0" text="Déconnexion" />
    </children>
 </AnchorPane>

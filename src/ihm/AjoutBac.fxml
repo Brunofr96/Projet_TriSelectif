@@ -7,47 +7,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
-            fx:controller="controller.AjoutBacController"
-            prefWidth="400" prefHeight="320">
+<AnchorPane prefHeight="409.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutBacController">
 
     <children>
 
-        <Label text="Ajouter un nouveau bac"
-               layoutX="90" layoutY="20"
-               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <Label layoutX="198.0" layoutY="69.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Ajouter un nouveau bac" />
 
-        <Label text="Type de bac :"
-               layoutX="50" layoutY="80"/>
+        <Label layoutX="158.0" layoutY="129.0" text="Type de bac :" />
 
-        <ComboBox fx:id="typeCombo"
-                  layoutX="180" layoutY="75"
-                  prefWidth="150"/>
+        <ComboBox fx:id="typeCombo" layoutX="288.0" layoutY="124.0" prefWidth="150" />
 
-        <Label text="Capacité max (kg) :"
-               layoutX="50" layoutY="130"/>
+        <Label layoutX="158.0" layoutY="179.0" text="Capacité max (kg) :" />
 
-        <Spinner fx:id="capaciteSpinner"
-                 layoutX="180" layoutY="125"
-                 prefWidth="150"/>
+        <Spinner fx:id="capaciteSpinner" layoutX="288.0" layoutY="174.0" prefWidth="150" />
 
-        <Label text="Emplacement :"
-               layoutX="50" layoutY="180"/>
+        <Label layoutX="158.0" layoutY="229.0" text="Emplacement :" />
 
-        <TextField fx:id="emplacementField"
-                   layoutX="180" layoutY="175"
-                   prefWidth="150"/>
+        <TextField fx:id="emplacementField" layoutX="288.0" layoutY="224.0" prefWidth="150" />
 
-        <Button fx:id="btnAjouter"
-                text="Ajouter"
-                layoutX="90" layoutY="240"
-                prefWidth="100"/>
+        <Button fx:id="btnAjouter" layoutX="198.0" layoutY="289.0" prefWidth="100" text="Ajouter" />
 
-        <Button fx:id="btnAnnuler"
-                text="Annuler"
-                layoutX="210" layoutY="240"
-                prefWidth="100"/>
+        <Button fx:id="btnAnnuler" layoutX="318.0" layoutY="289.0" prefWidth="100" text="Annuler" />
 
     </children>
 

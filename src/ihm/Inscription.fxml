@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.InscriptionController"
-            stylesheets="@/resources/css/connexion.css">
+<AnchorPane prefHeight="555.0" prefWidth="760.0" stylesheets="@/resources/css/connexion.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InscriptionController">
 
    <children>
       <!-- Conteneur clair -->
-      <AnchorPane layoutX="100.0" layoutY="40.0" prefWidth="400.0" prefHeight="320.0"
-                  style="-fx-background-color: rgba(255,255,255,0.8); -fx-background-radius: 10;">
+      <AnchorPane layoutX="70.0" layoutY="89.0" prefHeight="425.0" prefWidth="629.0" style="-fx-background-color: rgba(255,255,255,0.8); -fx-background-radius: 10;">
          <children>
 
-            <Label layoutX="140" layoutY="10" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Inscription" />
+            <Label layoutX="264.0" layoutY="30.0" prefHeight="47.0" prefWidth="143.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Inscription">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
 
-            <Label layoutX="30" layoutY="50" text="Nom :" style="-fx-font-weight: bold;" />
-            <TextField fx:id="nomField" layoutX="150" layoutY="45" prefWidth="200" />
+            <Label layoutX="155.0" layoutY="117.0" style="-fx-font-weight: bold;" text="Nom :" />
+            <TextField fx:id="nomField" layoutX="275.0" layoutY="112.0" prefHeight="25.0" prefWidth="236.0" />
 
-            <Label layoutX="30" layoutY="85" text="Adresse :" style="-fx-font-weight: bold;" />
-            <TextField fx:id="adresseField" layoutX="150" layoutY="80" prefWidth="200" />
+            <Label layoutX="155.0" layoutY="152.0" style="-fx-font-weight: bold;" text="Adresse :" />
+            <TextField fx:id="adresseField" layoutX="275.0" layoutY="147.0" prefHeight="25.0" prefWidth="236.0" />
 
-            <Label layoutX="30" layoutY="120" text="Email :" style="-fx-font-weight: bold;" />
-            <TextField fx:id="mailField" layoutX="150" layoutY="115" prefWidth="200" />
+            <Label layoutX="155.0" layoutY="187.0" style="-fx-font-weight: bold;" text="Email :" />
+            <TextField fx:id="mailField" layoutX="275.0" layoutY="182.0" prefHeight="25.0" prefWidth="236.0" />
 
-            <Label layoutX="30" layoutY="155" text="Mot de passe :" style="-fx-font-weight: bold;" />
-            <PasswordField fx:id="motDePasseField" layoutX="150" layoutY="150" prefWidth="200" />
+            <Label layoutX="155.0" layoutY="222.0" style="-fx-font-weight: bold;" text="Mot de passe :" />
+            <PasswordField fx:id="motDePasseField" layoutX="275.0" layoutY="217.0" prefHeight="25.0" prefWidth="236.0" />
 
-            <Label layoutX="30" layoutY="190" text="Code d'accès :" style="-fx-font-weight: bold;" />
-            <TextField fx:id="codeAccesField" layoutX="150" layoutY="185" prefWidth="200" />
+            <Label layoutX="155.0" layoutY="257.0" style="-fx-font-weight: bold;" text="Code d'accès :" />
+            <TextField fx:id="codeAccesField" layoutX="275.0" layoutY="252.0" prefHeight="25.0" prefWidth="236.0" />
 
-            <Button fx:id="validerButton" layoutX="150" layoutY="230" onAction="#handleInscription"
-                    prefWidth="100" text="Valider" />
+            <Button fx:id="validerButton" layoutX="275.0" layoutY="297.0" onAction="#handleInscription" prefHeight="40.0" prefWidth="105.0" text="Valider" />
 
-            <Button fx:id="retourButton" layoutX="40" layoutY="270" onAction="#handleRetour"
-                    prefWidth="76" text="Retour" />
+            <Button fx:id="retourButton" layoutX="28.0" layoutY="371.0" onAction="#handleRetour" prefHeight="40.0" prefWidth="82.0" text="Retour" />
 
             <Label fx:id="messageLabel" layoutX="150" layoutY="275" text="" />
          </children>
